@@ -69,12 +69,10 @@ public class PlayerPhysicsController implements IGameObjectComponent
 				case KeyEvent.VK_S:
 					//player.setMoving(Movements.DOWN, true);
 					p.accelerate(acceleration, new Direction(0, 1));
-
 					break;
 				case KeyEvent.VK_D:
 					//player.setMoving(Movements.RIGHT, true);
 					p.accelerate(acceleration, new Direction(1, 0));
-
 					break;
 				
 				}
@@ -83,7 +81,7 @@ public class PlayerPhysicsController implements IGameObjectComponent
 	}
 	
 	@Override
-	public void update()
+	public void updateComponent()
 	{
 		// TODO Auto-generated method stub
 		

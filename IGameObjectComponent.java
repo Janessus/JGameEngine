@@ -1,5 +1,5 @@
 
 public interface IGameObjectComponent
 {
-	public void update();
+	public void updateComponent();
 }

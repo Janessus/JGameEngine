@@ -18,7 +18,7 @@ public abstract class MyShape
 		position = new Point(x, y);
 		size = new Dimension(w, h);
 		offset = new Point(0, 0);
-		center = new Point(0, 0);
+		center = new Point();
 		updateCenter();
 	}
 
@@ -72,5 +72,10 @@ public abstract class MyShape
 		position.x += x;
 		position.y += y;		
 		updateCenter();
+	}
+	
+	public String toString()
+	{
+		return "x=" + position.x + ", y=" + position.y + ", width=" + size.width + ", height=" + size.height;
 	}
 }

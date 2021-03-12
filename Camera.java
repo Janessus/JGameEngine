@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -11,23 +12,22 @@ public class Camera extends JPanel
 	Point offset;
 	Point globalOffset;
 	Point position;
-	GameObject[] objects;
+	ArrayList<GameObject> objects;
 	GameObject target;
 	Game game;
 	
 	
-	public Camera(Game game, Container container)
+	public Camera(Game game, ArrayList<GameObject> container)
 	{
 		this.game = game;
 		position = new Point(0, 0);
-		objects = new GameObject[50];
-		objectCount = container.getComponentCount();
+		objects = new ArrayList<GameObject>();
 		offset = new Point(0, 0);
 		globalOffset = new Point(0, 0);
 
-		for(int i = 0; i < objectCount; i++)
+		for(GameObject go : container)
 		{
-			objects[i] = (GameObject)container.getComponent(i);
+			objects.add(go);
 		}
 	}
 	
@@ -45,8 +45,8 @@ public class Camera extends JPanel
 		//following 
 		if(following)
 		{
-			globalOffset.x = (game.getRootPane().getSize().width / 2) - target.getPosition().x;
-			globalOffset.y = (game.getRootPane().getSize().height / 2) - target.getPosition().y;
+			globalOffset.x = (game.getRootPane().getSize().width / 2) - target.getPosition().x - target.shape.getSize().width/2;
+			globalOffset.y = (game.getRootPane().getSize().height / 2) - target.getPosition().y - target.shape.getSize().height/2;
 		}
 		
 		//calculate mouse induced camera movement
@@ -59,9 +59,9 @@ public class Camera extends JPanel
 			globalOffset.y -= offset.y;
 		}
 		
-		for(int i = 0; i < objectCount; i++)
+		for(GameObject go : objects)
 		{
-			objects[i].shape.translate(globalOffset);
+			go.shape.translate(globalOffset);
 		}
 	}
 	
@@ -75,9 +75,9 @@ public class Camera extends JPanel
 		g.drawString("Window=" + game.getRootPane().getSize().width + ", " + game.getRootPane().getSize().height, 0, 60);
 		g.drawString("Target Position=" + target.shape.getPosition().x + ", " + target.shape.getPosition().y, 0, 75);
 				
-		for(int i = 0; i < objectCount; i++)
+		for(GameObject go : objects)
 		{
-			objects[i].paint(g);
+			go.paint(g);
 		}
 	}
 }

@@ -7,9 +7,7 @@ import javax.swing.JFrame;
 public class PlayerKeyboardController implements IGameObjectComponent
 {
 	boolean up, down, left, right; //movement
-	public double speed = 0.25;
-	private boolean skippedFrame = false;
-	private long tmpTime;
+	public double speed = 0.5;
 	double distanceSum = 0;
 	private JFrame window;
 	private Player player;
@@ -102,25 +100,24 @@ public class PlayerKeyboardController implements IGameObjectComponent
 	}
 	
 	@Override
-	public void update()
+	public void updateComponent()
 	{
 		double elapsedTime;
+		
 		try {
-			elapsedTime = 1000/player.game.fps;
+			elapsedTime = 1000_000_000 / player.game.fps;
 		} catch (Exception e) {
 			elapsedTime = 0;
 		}
-
-		System.out.println("elapsedTime=" + elapsedTime + ", distance=" + distanceSum + ", skippedFrame=" + skippedFrame);
 		
 		if(up | down | left | right)
 		{
-			distanceSum += (speed * elapsedTime);
+			distanceSum += (speed * elapsedTime)/1_000_000;
 
 			if(distanceSum < 1)
 				return;
-			else
-				distanceSum -= 1;
+
+			distanceSum -= (int)distanceSum;
 
 			if(up)
 				((PlayerShape)player.shape).translate(0, -1);
@@ -132,5 +129,4 @@ public class PlayerKeyboardController implements IGameObjectComponent
 				((PlayerShape)player.shape).translate(1, 0);
 		}
 	}
-
 }

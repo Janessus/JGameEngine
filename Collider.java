@@ -4,14 +4,12 @@ import java.util.ArrayList;
 public class Collider implements IGameObjectComponent
 {
 	private Rectangle collider;
-	private GameObject parent;
-	
+	private GameObject parent;	
 	
 	public Collider(GameObject parent)
 	{
 		this.parent = parent;
-		collider = new Rectangle();
-
+		collider = new Rectangle(parent.shape.getPosition().x, parent.shape.getPosition().y, (int)parent.shape.getSize().width, (int)parent.shape.getSize().height);
 	}
 	
 	
@@ -32,41 +30,48 @@ public class Collider implements IGameObjectComponent
 		{
 			if(c != null)
 			{
-				if(collider.intersects(((Collider)c).getBounds()))
+				//System.out.println(collider.toString() + ", " + ((Collider)c).getBounds().toString());
+				if(!collider.equals(((Collider)c).getBounds()) && collider.intersects(((Collider)c).getBounds()))
 				{
-					Rectangle r = collider.intersection(((Collider)c).getBounds());
+					//System.out.println("Collision ");
 					
+					Rectangle r = collider.intersection(((Collider)c).getBounds());
+										
 					int dx = 0, dy = 0;
 					
 					if(r.width < r.height)
 					{
-						if(r.x > parent.shape.getCenter().x)
+//						System.out.println(1);
+						if(r.x > collider.x + collider.width/2)
 							dx = -1;
 						else
 							dx = 1;
 					}
 					else
 					{
-						if(r.y > parent.shape.getCenter().y)
+//						System.out.println(2);
+						if(r.y > collider.y + collider.height/2)
 							dy = -1;
 						else
 							dy = 1;
 					}
+					
+//					System.out.println("Intersection: " + r.toString());
+//					System.out.println("Moving: " + dx * r.width + ", " + dy * r.height);
 					parent.shape.translate(dx * r.width, dy * r.height);
-					update();
+					updateComponent();
 				}
 			}
 		}
 	}
 	
-
+	
 	@Override
-	public void update()
+	public void updateComponent()
 	{
 		collider.x = parent.getPosition().x;
 		collider.y = parent.getPosition().y;
-		collider.width = parent.getSize().width;
-		collider.height = parent.getSize().height;		
+		collider.width = parent.shape.getSize().width;
+		collider.height = parent.shape.getSize().height;
 	}
-
 }

@@ -10,6 +10,7 @@ public class Player extends GameObject
 		this.game = game;
 		
 		addComponent(new PlayerKeyboardController(this, game.window));
+		addComponent(new Collider(this));
 		
 		//Physics p = new Physics(this, game);
 		//addComponent(p);

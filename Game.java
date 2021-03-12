@@ -8,14 +8,13 @@ import javax.swing.*;
 
 public class Game extends JPanel
 {
-	public long prevTime;
 	boolean run = false;
 	
 	int fps;
 
 	JFrame window;
 	Camera camera;
-	Container gameObjects;
+	ArrayList<GameObject> gameObjects;
 	Point mousePos;
 	Player player;
 	Movements moves;
@@ -31,27 +30,40 @@ public class Game extends JPanel
 	public void run()
 	{
 		run = true;
+		long prev = System.nanoTime();
 		
 		while(run)
 		{
-			update();
+			long currentTime = System.nanoTime();
+			
+			
+			//actual work
+			updateGame();
 			repaint();
+			
+			
+			
+			//fps
+			if(currentTime - prev == 0)
+				--prev;
+			
+			fps = (int)((1000.0 * 1000000) / (currentTime - prev));
+			prev = currentTime;
 		}
 	}
 	
 	
 	void init()
 	{
-		MyShape shape1 = new RectShape(0, 400, 600, 100);
-		GameObject gObj1 = new GameObject(shape1);
-		GameObject gObj2 = new GameObject(new RectShape(500, 99, 80,80));
+		GameObject gObj1 = new GameObject(new RectShape(0, 400, 600, 100));
+		gObj1.addComponent(new Collider(gObj1));
 		
-		prevTime = new Date().getTime();
+		GameObject gObj2 = new GameObject(new RectShape(500, 99, 80,80));
+		gObj2.addComponent(new Collider(gObj2));
 		
 		player = new Player("Player1", this);
-		
-		gameObjects = new Container();
-		
+
+		gameObjects = new ArrayList<GameObject>();
 		gameObjects.add(gObj1);
 		gameObjects.add(gObj2); 
 		gameObjects.add(player);
@@ -60,19 +72,17 @@ public class Game extends JPanel
 		camera.follow(player);
 		
 		window.setContentPane(camera);
-		
-		window.addKeyListener(new KeyListener() {
-		
+		window.addKeyListener(new KeyListener() 
+		{
 			@Override
-			public void keyTyped(KeyEvent e) {
-				
-			}
+			public void keyTyped(KeyEvent e) {}
+			
 			@Override
-			public void keyReleased(KeyEvent e) {
-			}
+			public void keyReleased(KeyEvent e) {}
 
 			@Override
-			public void keyPressed(KeyEvent e) {
+			public void keyPressed(KeyEvent e) 
+			{
 				int keyCode = e.getKeyCode();
 				
 				switch (keyCode) 
@@ -86,33 +96,25 @@ public class Game extends JPanel
 	}
 
 	
-	private int getFPS()
+	public int getFPS()
 	{
-		int fps;
-		try {
-			long currentTime = new Date().getTime();
-			fps = (int)( 1000 / (currentTime - this.prevTime));
-			this.prevTime = currentTime;
-			
-		} catch (Exception e) {
-			fps = 0;
-		}
 		return fps;
 	}
 	
 	
 	public void handleCollisions()
 	{
-		ArrayList<IGameObjectComponent> components = player.getComponents(Collider.class);
-		if(components != null)
+		ArrayList<IGameObjectComponent> playerComponents = player.getComponents(Collider.class);
+		
+		if(playerComponents != null)
 		{
-			for(IGameObjectComponent playerCollider : components)
+			for(IGameObjectComponent playerCollider : playerComponents)
 			{
-				for(int i = 0; i < gameObjects.getComponentCount(); i++)
+				for(GameObject go : gameObjects)
 				{
-					if(!gameObjects.getComponent(i).equals(player))
+					if(!go.equals(player))
 					{
-						((Collider)playerCollider).collidesWith((GameObject)gameObjects.getComponent(i));
+						((Collider)playerCollider).collidesWith((GameObject)go);
 					}
 				}
 			}
@@ -120,12 +122,12 @@ public class Game extends JPanel
 	}
 	
 	
-	void update()
+	void updateGame()
 	{
 		fps = getFPS();
 		mousePos = window.getMousePosition();
-		for(int i = 0; i < gameObjects.getComponentCount(); i++)
-			((GameObject) gameObjects.getComponent(i)).updateObject();
+		for(GameObject go : gameObjects)
+			go.updateObject();
 		
 		handleCollisions();
 	}

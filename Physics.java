@@ -39,7 +39,7 @@ public class Physics implements IGameObjectComponent
 			
 			//this.direction.normalize(, acceleration);
 			
-			long dT = new Date().getTime() - game.prevTime;
+			long dT = new Date().getTime();// - game.prevTime; TODO
 			
 			double dX = speed.x * direction.x * dT + 0.5 * acceleration * direction.x * dT * dT; 
 			double dY = speed.y * direction.y * dT + 0.5 * acceleration * direction.y * dT * dT;
@@ -55,9 +55,9 @@ public class Physics implements IGameObjectComponent
 	}
 	
 	@Override
-	public void update()
+	public void updateComponent()
 	{
-		long dT = new Date().getTime() - game.prevTime;
+		long dT = new Date().getTime();// - game.prevTime; TODO
 		
 		System.out.println("speed=" + speed.getCombinedLength());
 		

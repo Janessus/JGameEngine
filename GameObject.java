@@ -11,17 +11,19 @@ public class GameObject extends JPanel implements IGameObject
 	public MyShape shape;
 	public boolean render = true;
 	public boolean collide = true;
+	ArrayList<IGameObjectComponent> objectComponents;
 	
 	GameObject(MyShape shape)
 	{
 		this.shape=shape;
 	}
 	
+	@Override
 	public void paint(Graphics g)
 	{
-		shape.paint(g);
+		paintObject(g);
 	}
-
+	
 	@Override
 	public Point getPosition()
 	{
@@ -31,23 +33,28 @@ public class GameObject extends JPanel implements IGameObject
 	@Override
 	public void paintObject(Graphics g)
 	{
-		this.paint(g);
+		shape.paint(g);
 	}
 
 	@Override
 	public void addComponent(IGameObjectComponent c)
 	{
-		components.add(c);
+		if(objectComponents == null)
+			objectComponents = new ArrayList<IGameObjectComponent>();
+		objectComponents.add(c);
 	}
 	
 
 	public ArrayList<IGameObjectComponent> getComponents(Class type)
 	{
+		if(objectComponents == null)
+			return null;
+		
 		ArrayList<IGameObjectComponent> results = new ArrayList<IGameObjectComponent>();
 		
-		for(IGameObjectComponent goc : components)
+		for(IGameObjectComponent goc : objectComponents)
 		{
-			if(goc.getClass().isInstance(type))
+			if(goc.getClass().equals(type))
 			{
 				results.add(goc);
 			}
@@ -61,9 +68,10 @@ public class GameObject extends JPanel implements IGameObject
 	@Override
 	public void updateObject()
 	{
-		for(IGameObjectComponent c : components)
-		{
-			c.update();
-		}
+		if(objectComponents != null)
+			for(IGameObjectComponent c : objectComponents)
+			{
+				c.updateComponent();
+			}
 	}
 }
