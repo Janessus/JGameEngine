@@ -60,13 +60,6 @@ public abstract class MyShape
 		updateCenter();
 	}
 
-	public void translate(Point p)
-	{
-		position.x += p.x;
-		position.y += p.y;		
-		updateCenter();
-	}
-
 	public void translate(int x, int y)
 	{
 		position.x += x;

@@ -1,25 +1,17 @@
-import java.util.Date;
+
 
 public class Player extends GameObject
-{
-	public Game game;
-	
-	public Player(String name, Game game)
+{	
+	public Player(Game game, String name)
 	{
-		super(new PlayerShape());
-		this.game = game;
+		super(game, new PlayerShape());
 		
 		addComponent(new PlayerKeyboardController(this, game.window));
 		addComponent(new Collider(this));
+		addComponent(new CollectorComponent(this));
 		
 		//Physics p = new Physics(this, game);
 		//addComponent(p);
 		//addComponent(new PlayerPhysicsController(this, game.window, p));
-	}
-	
-	@Override
-	public void updateObject()
-	{
-		super.updateObject();
 	}
 }

@@ -3,6 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -52,25 +53,33 @@ public class Game extends JPanel
 		}
 	}
 	
+	void setupObjects()
+	{
+		Random r = new Random();
+		player = new Player(this, "Player1");
+
+		gameObjects = new ArrayList<GameObject>();
+		gameObjects.add(new BasicWall(this, 0, 400, 600, 100));
+		gameObjects.add(new BasicWall(this, 500, 99, 80,80)); 
+		//gameObjects.add(new Coin(this, new Point(700, 300), 10));
+		
+		for(int i = 0; i < 15; i++)
+		{
+			Coin coin = new Coin(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 10);
+//			System.out.println(coin);
+			gameObjects.add(coin);
+
+		}
+		
+		gameObjects.add(player);
+		
+		
+		camera.follow(player);
+	}
 	
 	void init()
 	{
-		GameObject gObj1 = new GameObject(new RectShape(0, 400, 600, 100));
-		gObj1.addComponent(new Collider(gObj1));
-		
-		GameObject gObj2 = new GameObject(new RectShape(500, 99, 80,80));
-		gObj2.addComponent(new Collider(gObj2));
-		
-		player = new Player("Player1", this);
-
-		gameObjects = new ArrayList<GameObject>();
-		gameObjects.add(gObj1);
-		gameObjects.add(gObj2); 
-		gameObjects.add(player);
-		
-		camera = new Camera(this, gameObjects);
-		camera.follow(player);
-		
+		camera = new Camera(this);
 		window.setContentPane(camera);
 		window.addKeyListener(new KeyListener() 
 		{
@@ -104,17 +113,19 @@ public class Game extends JPanel
 	
 	public void handleCollisions()
 	{
-		ArrayList<IGameObjectComponent> playerComponents = player.getComponents(Collider.class);
+		ArrayList<IGameObjectComponent> playerComponents = player.getComponentList(Collider.class);
 		
 		if(playerComponents != null)
 		{
-			for(IGameObjectComponent playerCollider : playerComponents)
+//			for(IGameObjectComponent playerCollider : playerComponents)
+			for(int k = 0; k < playerComponents.size(); k++)
 			{
-				for(GameObject go : gameObjects)
+//				for(GameObject go : gameObjects)
+				for(int i = 0; i < gameObjects.size(); i++)
 				{
-					if(!go.equals(player))
+					if(!gameObjects.get(i).equals(player))
 					{
-						((Collider)playerCollider).collidesWith((GameObject)go);
+						((Collider)playerComponents.get(k)).collideWith((GameObject)gameObjects.get(i));
 					}
 				}
 			}
@@ -161,6 +172,7 @@ public class Game extends JPanel
 		window.setUndecorated(true);
 		window.setVisible(true);
 		
+		game.setupObjects();
 		game.run();
 		window.dispose();
 	}

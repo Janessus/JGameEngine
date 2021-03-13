@@ -12,23 +12,16 @@ public class Camera extends JPanel
 	Point offset;
 	Point globalOffset;
 	Point position;
-	ArrayList<GameObject> objects;
 	GameObject target;
 	Game game;
 	
 	
-	public Camera(Game game, ArrayList<GameObject> container)
+	public Camera(Game game)
 	{
 		this.game = game;
 		position = new Point(0, 0);
-		objects = new ArrayList<GameObject>();
 		offset = new Point(0, 0);
 		globalOffset = new Point(0, 0);
-
-		for(GameObject go : container)
-		{
-			objects.add(go);
-		}
 	}
 	
 	
@@ -59,9 +52,9 @@ public class Camera extends JPanel
 			globalOffset.y -= offset.y;
 		}
 		
-		for(GameObject go : objects)
+		for(GameObject go : game.gameObjects)
 		{
-			go.shape.translate(globalOffset);
+			go.shape.translate(globalOffset.x, globalOffset.y);
 		}
 	}
 	
@@ -71,13 +64,15 @@ public class Camera extends JPanel
 		g.setColor(Color.BLACK);
 		renderCamera();
 		
-		g.drawString("Offset=" + offset.x + ", " + offset.y, 0, 45);
-		g.drawString("Window=" + game.getRootPane().getSize().width + ", " + game.getRootPane().getSize().height, 0, 60);
-		g.drawString("Target Position=" + target.shape.getPosition().x + ", " + target.shape.getPosition().y, 0, 75);
-				
-		for(GameObject go : objects)
+		for(GameObject go : game.gameObjects)
 		{
 			go.paint(g);
 		}
+		
+		g.setColor(Color.BLACK);
+		g.drawString("Offset=" + offset.x + ", " + offset.y, 0, 45);
+		g.drawString("Window=" + game.getRootPane().getSize().width + ", " + game.getRootPane().getSize().height, 0, 60);
+//		sg.drawString("Target Position=" + target.shape.getPosition().x + ", " + target.shape.getPosition().y, 0, 75);
+		g.drawString(((CollectorComponent)target.getComponentList(CollectorComponent.class).get(0)).getAttributes(), 0, 90);
 	}
 }

@@ -93,9 +93,6 @@ public class PlayerKeyboardController implements IGameObjectComponent
 		case RIGHT:
 			right = active;
 			break;
-			
-		default:
-			break;
 		}
 	}
 	
@@ -106,14 +103,16 @@ public class PlayerKeyboardController implements IGameObjectComponent
 		
 		try {
 			elapsedTime = 1000_000_000 / player.game.fps;
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 			elapsedTime = 0;
 		}
 		
 		if(up | down | left | right)
 		{
 			distanceSum += (speed * elapsedTime)/1_000_000;
-
+			
 			if(distanceSum < 1)
 				return;
 
