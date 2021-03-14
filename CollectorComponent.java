@@ -23,9 +23,10 @@ public class CollectorComponent implements IGameObjectComponent, ICollisionHandl
 		return "Gold=" + gold + ", Health=" + health + ", Stamina=" + stamina + ", XP=" + xp;
 	}
 	
+	//returns true if the item was collectet
 	public boolean collect(Collectables type, int value)
 	{
-		System.out.println("Collecting type=" + type + ", value=" + value);
+//		System.out.println("Collecting type=" + type + ", value=" + value);
 		switch (type) {
 		case GOLD:
 			gold += value;
@@ -48,16 +49,20 @@ public class CollectorComponent implements IGameObjectComponent, ICollisionHandl
 
 	@Override
 	public boolean handleCollisionWith(GameObject o) {
+		boolean returnVal = false;
 		List<IGameObjectComponent> list = o.getComponentList(CollectableCollisionHandler.class);
 		if(list != null)
 		{
-			for(IGameObjectComponent comp : list)
+			for(int i = 0; i < list.size(); i++)
 			{
-				if(comp == null)
-					return true;
-				((CollectableCollisionHandler)comp).handleCollisionWith(parent);
+				if(list.get(i) == null)
+					returnVal = true;
+				else
+					returnVal |= ((CollectableCollisionHandler)list.get(i)).handleCollisionWith(parent);
 			}
+			return returnVal;
 		}
-		return true;
+		else
+			return true;
 	}
 }

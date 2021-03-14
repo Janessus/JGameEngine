@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-public class RectShape extends MyShape
+public class RectShape extends GameShape
 {
 	public RectShape(int x, int y, int w, int h)
 	{

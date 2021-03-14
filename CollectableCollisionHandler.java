@@ -16,21 +16,22 @@ public class CollectableCollisionHandler extends Collectable implements IGameObj
 	@Override
 	public void updateComponent() {}
 	
+	
 	public boolean onCollision(GameObject o)
 	{
 		ArrayList<IGameObjectComponent> components = o.getComponentList(CollectorComponent.class);
 		if(components != null)
 		{
-			for(IGameObjectComponent goc : components)
+			for(int i = 0; i < components.size(); i++)
 			{
-				if(((CollectorComponent)goc).collect(((Collectable)parentObject).type, ((Collectable)parentObject).value))
+				if(((CollectorComponent)components.get(i)).collect(((Collectable)parentObject).type, ((Collectable)parentObject).value))
 				{
 					parentObject.destroy();
-					return true;
+					return false;
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 
 	@Override

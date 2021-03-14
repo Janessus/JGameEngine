@@ -5,7 +5,7 @@ public abstract class Collectable extends GameObject implements ICollisionHandle
 	Collectables type;
 	int value = 0;
 	
-	Collectable(Game game, MyShape shape, Collectables type)
+	Collectable(Game game, GameShape shape, Collectables type)
 	{
 		super(game, shape);
 		this.type = type;

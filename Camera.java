@@ -52,9 +52,9 @@ public class Camera extends JPanel
 			globalOffset.y -= offset.y;
 		}
 		
-		for(GameObject go : game.gameObjects)
+		for(int i = 0; i < game.gameObjects.size(); i++)
 		{
-			go.shape.translate(globalOffset.x, globalOffset.y);
+			game.gameObjects.get(i).shape.translate(globalOffset.x, globalOffset.y);
 		}
 	}
 	
@@ -64,9 +64,9 @@ public class Camera extends JPanel
 		g.setColor(Color.BLACK);
 		renderCamera();
 		
-		for(GameObject go : game.gameObjects)
+		for(int i = 0; i < game.gameObjects.size(); i++)
 		{
-			go.paint(g);
+			game.gameObjects.get(i).paint(g);
 		}
 		
 		g.setColor(Color.BLACK);

@@ -3,7 +3,7 @@
 public class MediPack extends Collectable
 {
 
-	MediPack(Game game, MyShape shape, Collectables type)
+	MediPack(Game game, GameShape shape, Collectables type)
 	{
 		super(game, shape, type);
 		

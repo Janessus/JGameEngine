@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 
-public abstract class MyShape
+public abstract class GameShape
 {
 	private Point position;	//absolute
 	private Dimension size;
@@ -13,7 +13,7 @@ public abstract class MyShape
 	
 	public abstract void paint(Graphics g);
 	
-	public MyShape(int x, int y, int w, int h)
+	public GameShape(int x, int y, int w, int h)
 	{
 		position = new Point(x, y);
 		size = new Dimension(w, h);

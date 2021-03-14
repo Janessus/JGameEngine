@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
 
-public class PlayerShape extends MyShape
+public class PlayerShape extends GameShape
 {
 	public PlayerShape()
 	{

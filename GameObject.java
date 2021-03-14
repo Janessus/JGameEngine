@@ -14,12 +14,12 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public abstract class GameObject extends JPanel
 {
-	public MyShape shape;
+	public GameShape shape;
 	public Game game;
 	
 	ArrayList<IGameObjectComponent> objectComponents;
 	
-	GameObject(Game game, MyShape shape)
+	GameObject(Game game, GameShape shape)
 	{
 		this.shape = shape;
 		this.game = game;
@@ -56,6 +56,11 @@ public abstract class GameObject extends JPanel
 			objectComponents.remove(c);
 	}
 	
+	public IGameObjectComponent getFirstComponent(Class type)
+	{
+		return getComponentList(type).get(0);
+	}
+	
 
 	public ArrayList<IGameObjectComponent> getComponentList(Class type)
 	{
@@ -85,9 +90,9 @@ public abstract class GameObject extends JPanel
 	public void updateObject()
 	{
 		if(objectComponents != null)
-			for(IGameObjectComponent c : objectComponents)
+			for(int i = 0; i < objectComponents.size(); i++)
 			{
-				c.updateComponent();
+				objectComponents.get(i).updateComponent();
 			}
 	}
 	
@@ -95,9 +100,9 @@ public abstract class GameObject extends JPanel
 	{
 		if(objectComponents != null)
 		{
-			for(IGameObjectComponent comp : objectComponents)
+			for(int i = 0; i < objectComponents.size(); i++)
 			{
-				objectComponents.remove(comp);
+				objectComponents.remove(objectComponents.get(i));
 			}
 		}
 		game.gameObjects.remove(this);

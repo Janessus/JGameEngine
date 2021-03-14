@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 public class PlayerKeyboardController implements IGameObjectComponent
 {
 	boolean up, down, left, right; //movement
-	public double speed = 0.5;
+	public double speed = 0.6;
 	double distanceSum = 0;
 	private JFrame window;
 	private Player player;

@@ -55,11 +55,11 @@ public class Collider implements IGameObjectComponent
 		if(colliders == null)
 			return;
 		
-		for(IGameObjectComponent c : colliders)
+		for(int i = 0; i < colliders.size(); i++)
 		{
-			if(c != null)
+			if(colliders.get(i) != null)
 			{
-				if(!collider.equals(((Collider)c).getBounds()) && collider.intersects(((Collider)c).getBounds()))
+				if(!collider.equals(((Collider)colliders.get(i)).getBounds()) && collider.intersects(((Collider)colliders.get(i)).getBounds()))
 				{
 					//Collision confirmed	
 //					System.out.println("requesting interface, type=" + o.getClass());
@@ -68,18 +68,18 @@ public class Collider implements IGameObjectComponent
 					solveRequest = false;
 					if(handlers != null)
 					{
-						for(IGameObjectComponent ch : handlers)
+						for(int k = 0; k < handlers.size(); k++)
 						{
-							if(ch != null)
+							if(handlers.get(k) != null)
 							{
-								solveRequest |= ((ICollisionHandler)ch).handleCollisionWith(o);
+								solveRequest |= ((ICollisionHandler)handlers.get(k)).handleCollisionWith(o);
 							}
 						}
 						if(solveRequest)
-							solveCollision((Collider)c);
+							solveCollision((Collider)colliders.get(i));
 					}
 					else
-						solveCollision((Collider)c);
+						solveCollision((Collider)colliders.get(i));
 				}
 			}
 		}

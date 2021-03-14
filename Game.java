@@ -37,7 +37,6 @@ public class Game extends JPanel
 		{
 			long currentTime = System.nanoTime();
 			
-			
 			//actual work
 			updateGame();
 			repaint();
@@ -53,6 +52,8 @@ public class Game extends JPanel
 		}
 	}
 	
+	
+	//Create initial GameObjects here
 	void setupObjects()
 	{
 		Random r = new Random();
@@ -68,7 +69,6 @@ public class Game extends JPanel
 			Coin coin = new Coin(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 10);
 //			System.out.println(coin);
 			gameObjects.add(coin);
-
 		}
 		
 		gameObjects.add(player);
