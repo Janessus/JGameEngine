@@ -35,6 +35,11 @@ public abstract class GameObject extends JPanel
 	public void paintObject(Graphics g)
 	{
 		shape.paint(g);
+		
+		for(int i = 0; i < objectComponents.size(); i++)
+		{
+			objectComponents.get(i).drawComponent(g);
+		}
 	}
 
 	
@@ -43,6 +48,7 @@ public abstract class GameObject extends JPanel
 		return shape.getPosition();
 	}
 
+	
 	public void addComponent(IGameObjectComponent c)
 	{
 		if(objectComponents == null)
@@ -50,11 +56,13 @@ public abstract class GameObject extends JPanel
 		objectComponents.add(c);
 	}
 	
+	
 	public void removeComponent(IGameObjectComponent c)
 	{
 		if(objectComponents != null)
 			objectComponents.remove(c);
 	}
+	
 	
 	public IGameObjectComponent getFirstComponent(Class type)
 	{
@@ -72,10 +80,6 @@ public abstract class GameObject extends JPanel
 		
 		for(IGameObjectComponent goc : objectComponents)
 		{
-//			System.out.println("TARGET: " + type);
-//			System.out.println("INTERFACES: " + Arrays.asList(goc.getClass().getInterfaces()));
-//			System.out.println("GOC: " + goc.getClass());
-			
 			if(goc.getClass().equals(type) || Arrays.asList(goc.getClass().getInterfaces()).contains(type))
 			{
 				results.add(goc);
@@ -87,6 +91,7 @@ public abstract class GameObject extends JPanel
 		return results;
 	}
 
+	
 	public void updateObject()
 	{
 		if(objectComponents != null)
@@ -95,6 +100,7 @@ public abstract class GameObject extends JPanel
 				objectComponents.get(i).updateComponent();
 			}
 	}
+	
 	
 	public void destroy()
 	{

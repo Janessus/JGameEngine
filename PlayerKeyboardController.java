@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Date;
@@ -127,5 +128,19 @@ public class PlayerKeyboardController implements IGameObjectComponent
 			if(right)
 				((PlayerShape)player.shape).translate(1, 0);
 		}
+	}
+
+	@Override
+	public void drawComponent(Graphics g)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setVisible(boolean visible)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 }

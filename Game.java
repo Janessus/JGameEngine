@@ -73,6 +73,20 @@ public class Game extends JPanel
 		
 		gameObjects.add(player);
 		
+		//Set all colliders to visible
+		for(int i = 0; i < gameObjects.size(); i++)
+		{
+			ArrayList<IGameObjectComponent> components = gameObjects.get(i).getComponentList(Collider.class);
+			
+			if(components != null)
+			{
+				for(int k = 0; k < components.size(); k++)
+				{
+					components.get(k).setVisible(true);
+				}
+			}
+		}
+		
 		
 		camera.follow(player);
 	}

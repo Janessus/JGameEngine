@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.util.List;
 
 public class CollectorComponent implements IGameObjectComponent, ICollisionHandler
@@ -26,7 +27,6 @@ public class CollectorComponent implements IGameObjectComponent, ICollisionHandl
 	//returns true if the item was collectet
 	public boolean collect(Collectables type, int value)
 	{
-//		System.out.println("Collecting type=" + type + ", value=" + value);
 		switch (type) {
 		case GOLD:
 			gold += value;
@@ -50,7 +50,7 @@ public class CollectorComponent implements IGameObjectComponent, ICollisionHandl
 	@Override
 	public boolean handleCollisionWith(GameObject o) {
 		boolean returnVal = false;
-		List<IGameObjectComponent> list = o.getComponentList(CollectableCollisionHandler.class);
+		List<IGameObjectComponent> list = o.getComponentList(CollectableComponent.class);
 		if(list != null)
 		{
 			for(int i = 0; i < list.size(); i++)
@@ -58,11 +58,21 @@ public class CollectorComponent implements IGameObjectComponent, ICollisionHandl
 				if(list.get(i) == null)
 					returnVal = true;
 				else
-					returnVal |= ((CollectableCollisionHandler)list.get(i)).handleCollisionWith(parent);
+					returnVal |= ((CollectableComponent)list.get(i)).handleCollisionWith(parent);
 			}
 			return returnVal;
 		}
 		else
 			return true;
+	}
+
+	@Override
+	public void drawComponent(Graphics g) {}
+
+	@Override
+	public void setVisible(boolean visible)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.util.Date;
 import java.util.Vector;
 
@@ -67,5 +68,19 @@ public class Physics implements IGameObjectComponent
 			//speed.x /= friction;
 			//speed.y /= friction;
 		}
+	}
+
+	@Override
+	public void drawComponent(Graphics g)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setVisible(boolean visible)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 }

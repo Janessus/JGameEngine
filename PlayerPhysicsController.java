@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -82,6 +83,20 @@ public class PlayerPhysicsController implements IGameObjectComponent
 	
 	@Override
 	public void updateComponent()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawComponent(Graphics g)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setVisible(boolean visible)
 	{
 		// TODO Auto-generated method stub
 		

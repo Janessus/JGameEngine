@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
@@ -6,6 +8,8 @@ public class Collider implements IGameObjectComponent
 	private Rectangle collider;
 	private GameObject parent;
 	private boolean solveRequest = false;
+	private Graphics g;
+	private boolean visible = false;
 	
 	public Collider(GameObject parent)
 	{
@@ -62,9 +66,7 @@ public class Collider implements IGameObjectComponent
 				if(!collider.equals(((Collider)colliders.get(i)).getBounds()) && collider.intersects(((Collider)colliders.get(i)).getBounds()))
 				{
 					//Collision confirmed	
-//					System.out.println("requesting interface, type=" + o.getClass());
 					ArrayList<IGameObjectComponent> handlers = parent.getComponentList(ICollisionHandler.class);
-//					System.out.println(handlers);
 					solveRequest = false;
 					if(handlers != null)
 					{
@@ -87,11 +89,28 @@ public class Collider implements IGameObjectComponent
 	
 	
 	@Override
+	public void setVisible(boolean visible)
+	{
+		this.visible = visible;
+	}
+
+	@Override
 	public void updateComponent()
 	{
 		collider.x = parent.getPosition().x;
 		collider.y = parent.getPosition().y;
 		collider.width = parent.shape.getSize().width;
 		collider.height = parent.shape.getSize().height;
+	}
+
+
+	@Override
+	public void drawComponent(Graphics g)
+	{
+		if(visible)
+		{
+			g.setColor(Color.red);
+			g.drawRect(collider.x, collider.y, (int)collider.getWidth(), (int)collider.getHeight());
+		}
 	}
 }

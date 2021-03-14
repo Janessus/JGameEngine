@@ -1,19 +1,15 @@
 
 @SuppressWarnings("serial")
-public class MediPack extends Collectable
+public class MediPack extends CollectableComponent
 {
-
-	MediPack(Game game, GameShape shape, Collectables type)
+	public MediPack(GameObject parent, Collectables type, int value)
 	{
-		super(game, shape, type);
-		
+		super(parent, type, value);
 	}
 
-	
 	@Override
 	public boolean handleCollisionWith(GameObject o)
 	{
 		return true;
 	}
-	
 }
