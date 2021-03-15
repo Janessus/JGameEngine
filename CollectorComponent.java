@@ -4,8 +4,6 @@ import java.util.List;
 public class CollectorComponent implements IGameObjectComponent, ICollisionHandler
 {
 	private int gold;
-	private int health;
-	private int stamina;
 	private int xp;
 	
 	GameObject parent;
@@ -14,14 +12,7 @@ public class CollectorComponent implements IGameObjectComponent, ICollisionHandl
 	{
 		this.parent = parent;
 		gold = 0;
-		health = 0;
-		stamina = 0;
 		xp = 0;
-	}
-	
-	public String getAttributes()
-	{
-		return "Gold=" + gold + ", Health=" + health + ", Stamina=" + stamina + ", XP=" + xp;
 	}
 	
 	//returns true if the item was collectet
@@ -31,15 +22,22 @@ public class CollectorComponent implements IGameObjectComponent, ICollisionHandl
 		case GOLD:
 			gold += value;
 			return true;
+			
 		case HEALTH:
-			health += value;
-			return true;
+			HealthAttributeComponent health = (HealthAttributeComponent) parent.getFirstComponent(HealthAttributeComponent.class);
+			if(health == null)
+				return false;
+			return health.add(value);
+			
 		case XP:
 			xp += value;
 			return true;
+			
 		case STAMINA:
-			stamina += value;
-			return true;
+			StaminaAttributeComponent stamina = (StaminaAttributeComponent) parent.getFirstComponent(StaminaAttributeComponent.class);
+			if(stamina == null)
+				return false;
+			return stamina.add(value);
 		}
 		return false;
 	}

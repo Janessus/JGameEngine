@@ -64,13 +64,18 @@ public class Game extends JPanel
 		gameObjects.add(new BasicWall(this, 500, 99, 80,80)); 
 		//gameObjects.add(new Coin(this, new Point(700, 300), 10));
 		
-		for(int i = 0; i < 15; i++)
+		for(int i = 0; i < 5; i++)
 		{
 			Coin coin = new Coin(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 10);
-//			System.out.println(coin);
 			gameObjects.add(coin);
+			
+			MediPack med = new MediPack(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 50);
+			gameObjects.add(med);
+			
+			Adrenalin adrenalin = new Adrenalin(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 50);
+			gameObjects.add(adrenalin);
 		}
-		
+				
 		gameObjects.add(player);
 		
 		//Set all colliders to visible
@@ -86,8 +91,6 @@ public class Game extends JPanel
 				}
 			}
 		}
-		
-		
 		camera.follow(player);
 	}
 	
@@ -164,6 +167,7 @@ public class Game extends JPanel
 		this.camera.paint(g);
 		
 		g.setColor(Color.BLACK);
+		g.setFont(new Font("monospace", Font.PLAIN, 12));
 		g.drawString(fps + "fps", 0, 15);
 		
 		if(mousePos == null)

@@ -43,7 +43,7 @@ public class CollectableComponent implements IGameObjectComponent, ICollisionHan
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 
 	

@@ -68,11 +68,5 @@ public class Camera extends JPanel
 		{
 			game.gameObjects.get(i).paint(g);
 		}
-		
-		g.setColor(Color.BLACK);
-		g.drawString("Offset=" + offset.x + ", " + offset.y, 0, 45);
-		g.drawString("Window=" + game.getRootPane().getSize().width + ", " + game.getRootPane().getSize().height, 0, 60);
-//		sg.drawString("Target Position=" + target.shape.getPosition().x + ", " + target.shape.getPosition().y, 0, 75);
-		g.drawString(((CollectorComponent)target.getComponentList(CollectorComponent.class).get(0)).getAttributes(), 0, 90);
 	}
 }

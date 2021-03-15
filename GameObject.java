@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public abstract class GameObject extends JPanel
+public abstract class GameObject
 {
 	public GameShape shape;
 	public Game game;
@@ -25,7 +25,7 @@ public abstract class GameObject extends JPanel
 		this.game = game;
 	}
 
-	@Override
+
 	public void paint(Graphics g)
 	{
 		paintObject(g);

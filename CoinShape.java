@@ -20,7 +20,6 @@ public class CoinShape extends GameShape
 		g.drawOval(getPosition().x, getPosition().y, getSize().width, getSize().height);
 		g.setFont(new Font("monospace", Font.BOLD, 15));
 		g.drawString("$", getPosition().x + 12, getPosition().y + 21);
-		g.setFont(new Font("monospace", Font.PLAIN, 12));
 	}
 
 }

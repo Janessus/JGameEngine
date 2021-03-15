@@ -1,15 +1,12 @@
+import java.awt.Point;
 
 @SuppressWarnings("serial")
-public class MediPack extends CollectableComponent
+public class MediPack extends GameObject
 {
-	public MediPack(GameObject parent, Collectables type, int value)
+	public MediPack(Game game, Point pos, int value)
 	{
-		super(parent, type, value);
-	}
-
-	@Override
-	public boolean handleCollisionWith(GameObject o)
-	{
-		return true;
+		super(game, new MediPackShape(pos));
+		addComponent(new Collider(this));
+		addComponent(new CollectableComponent(this, Collectables.HEALTH, value));
 	}
 }
