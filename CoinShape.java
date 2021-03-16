@@ -15,11 +15,11 @@ public class CoinShape extends GameShape
 	public void paint(Graphics g)
 	{
 		g.setColor(Color.YELLOW);
-		g.fillOval(getPosition().x, getPosition().y, getSize().width, getSize().height);
+		g.fillOval((int)getPosition().getX(), (int)getPosition().getY(), getSize().width, getSize().height);
 		g.setColor(Color.BLACK);
-		g.drawOval(getPosition().x, getPosition().y, getSize().width, getSize().height);
+		g.drawOval((int)getPosition().getX(), (int)getPosition().getY(), getSize().width, getSize().height);
 		g.setFont(new Font("monospace", Font.BOLD, 15));
-		g.drawString("$", getPosition().x + 12, getPosition().y + 21);
+		g.drawString("$", (int)getPosition().getX() + 12, (int)getPosition().getY() + 21);
 	}
 
 }

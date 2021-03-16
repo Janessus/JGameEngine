@@ -1,21 +1,19 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Shape;
 
-public class PlayerShape extends GameShape
+public class ArtificialPlayerShape extends GameShape
 {
-	public PlayerShape()
+
+	public ArtificialPlayerShape()
 	{
-		super(700, 500, 50, 50);
+		super(20, 20, 50, 50);
 	}
 
-	
 	@Override
 	public void paint(Graphics g)
-	{	
-		g.setColor(Color.GREEN);
+	{
+		g.setColor(Color.ORANGE);
 		g.fillOval((int)getPosition().getX(), (int)getPosition().getY(), getSize().width, getSize().height);
 	}
+
 }

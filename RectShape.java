@@ -15,7 +15,7 @@ public class RectShape extends GameShape
 	public void paint(Graphics g)
 	{
 		g.setColor(Color.BLACK);
-		g.fillRect(getPosition().x, getPosition().y, getSize().width, getSize().height);
+		g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), getSize().width, getSize().height);
 /*
 		g.setColor(Color.RED);
 		g.drawRect(collider.x, collider.y, collider.width, collider.height);

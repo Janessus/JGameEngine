@@ -1,31 +1,40 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Shape;
+import java.awt.geom.Point2D;
 
 public abstract class GameShape
 {
-	private Point position;	//absolute
+	private Point2D position;	//absolute
 	private Dimension size;
-	private Point offset;	//relative to center
-	private Point center;	//center of the object
+	private Point2D offset;	//relative to center
 	
 	public abstract void paint(Graphics g);
 	
 	public GameShape(int x, int y, int w, int h)
 	{
-		position = new Point(x, y);
+		position = new Point2D.Double(x, y);
 		size = new Dimension(w, h);
-		offset = new Point(0, 0);
-		center = new Point();
-		updateCenter();
+		offset = new Point2D.Double(0, 0);
+	}
+	
+	public double getCenterDistance(GameShape target)
+	{
+		return getCenter().distance(target.getCenter());
+	}
+	
+	public double getCircleEdgeDistance(GameShape target)
+	{
+		return (getCenterDistance(target) - getRadius() - target.getRadius());
 	}
 
-	public void setOffset(Point p)
+	public double getRadius()
+	{
+		return Math.sqrt(size.getWidth() * size.getWidth() + size.getHeight() * size.getWidth())/2;
+	}
+	
+	public void setOffset(Point2D p)
 	{
 		offset = p;
-		updateCenter();
 	}
 
 	public void setSize(int w, int h)
@@ -37,38 +46,30 @@ public abstract class GameShape
 	{
 		return size;
 	}
+
 	
-	public void updateCenter()
-	{
-		center.setLocation(position.x - size.width/2 - offset.x, position.y - size.height/2 - offset.y);
-	}
-	
-	public Point getPosition()
+	public Point2D getPosition()
 	{
 		return position;
 	}
 	
-	public Point getCenter()
+	public Point2D getCenter()
 	{
-		return center;
+		return new Point2D.Double(position.getX() - size.width/2 - offset.getX(), position.getY() - size.height/2 - offset.getY());
 	}
 
-	public void setPosition(Point p)
+	public void setPosition(Point2D p)
 	{
-		position.x = p.x;
-		position.y = p.y;
-		updateCenter();
+		position.setLocation(p.getX(), p.getY());
 	}
 
-	public void translate(int x, int y)
+	public void translate(double x, double y)
 	{
-		position.x += x;
-		position.y += y;		
-		updateCenter();
+		position.setLocation(position.getX() + x, position.getY() + y);
 	}
 	
 	public String toString()
 	{
-		return "x=" + position.x + ", y=" + position.y + ", width=" + size.width + ", height=" + size.height;
+		return "x=" + position.getX() + ", y=" + position.getY() + ", width=" + size.width + ", height=" + size.height;
 	}
 }

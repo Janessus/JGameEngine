@@ -38,8 +38,8 @@ public class Camera extends JPanel
 		//following 
 		if(following)
 		{
-			globalOffset.x = (game.getRootPane().getSize().width / 2) - target.getPosition().x - target.shape.getSize().width/2;
-			globalOffset.y = (game.getRootPane().getSize().height / 2) - target.getPosition().y - target.shape.getSize().height/2;
+			globalOffset.x = (int) ((game.getRootPane().getSize().width / 2) - target.getPosition().getX() - target.shape.getSize().width/2);
+			globalOffset.y = (int) ((game.getRootPane().getSize().height / 2) - target.getPosition().getY() - target.shape.getSize().height/2);
 		}
 		
 		//calculate mouse induced camera movement

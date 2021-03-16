@@ -15,14 +15,14 @@ public class MediPackShape extends GameShape
 	public void paint(Graphics g)
 	{
 		g.setColor(Color.WHITE);
-		g.fillRect(getPosition().x, getPosition().y, getSize().width, getSize().height);
+		g.fillRect((int)getPosition().getX(), (int)getPosition().getY(), getSize().width, getSize().height);
 
 		g.setColor(Color.BLACK);
-		g.drawRect(getPosition().x, getPosition().y, getSize().width, getSize().height);
+		g.drawRect((int)getPosition().getX(), (int)getPosition().getY(), getSize().width, getSize().height);
 		
 		g.setColor(Color.RED);
 		g.setFont(new Font("monospace", Font.BOLD, 30));
-		g.drawString("+", getPosition().x + getSize().width/2 - 8, getPosition().y + getSize().height -7);
+		g.drawString("+", (int)getPosition().getX() + getSize().width/2 - 8, (int)getPosition().getY() + getSize().height -7);
 		
 
 	}

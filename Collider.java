@@ -1,24 +1,22 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 public class Collider implements IGameObjectComponent
 {
-	private Rectangle collider;
+	private Rectangle2D collider;
 	private GameObject parent;
-	private boolean solveRequest = false;
-	private Graphics g;
 	private boolean visible = false;
 	
 	public Collider(GameObject parent)
 	{
 		this.parent = parent;
-		collider = new Rectangle(parent.shape.getPosition().x, parent.shape.getPosition().y, (int)parent.shape.getSize().width, (int)parent.shape.getSize().height);
+		collider = new Rectangle2D.Double(parent.shape.getPosition().getX(), parent.shape.getPosition().getY(), parent.shape.getSize().getWidth(), parent.shape.getSize().getHeight());
 	}
 	
 	
-	public Rectangle getBounds()
+	public Rectangle2D getBounds()
 	{
 		return collider;
 	}
@@ -27,26 +25,26 @@ public class Collider implements IGameObjectComponent
 	//move the caller away from the target
 	public void solveCollision(Collider c)
 	{
-		Rectangle r = collider.intersection(((Collider)c).getBounds());
+		Rectangle2D r = collider.createIntersection(((Collider)c).getBounds());
 		
 		int dx = 0, dy = 0;
 		
-		if(r.width < r.height)
+		if(r.getWidth() < r.getHeight())
 		{
-			if(r.x > collider.x + collider.width/2)
+			if(r.getX() > collider.getX() + collider.getWidth()/2)
 				dx = -1;
 			else
 				dx = 1;
 		}
 		else
 		{
-			if(r.y > collider.y + collider.height/2)
+			if(r.getY() > collider.getY() + collider.getHeight()/2)
 				dy = -1;
 			else
 				dy = 1;
 		}
 
-		parent.shape.translate(dx * r.width, dy * r.height);
+		parent.shape.translate(dx * r.getWidth(), dy * r.getHeight());
 		updateComponent();
 	}
 	
@@ -54,6 +52,7 @@ public class Collider implements IGameObjectComponent
 	//detect and solve collision
 	public void collideWith(GameObject o)
 	{
+		boolean solveRequest = false;
 		ArrayList<IGameObjectComponent> colliders = o.getComponentList(Collider.class);
 		
 		if(colliders == null)
@@ -97,10 +96,10 @@ public class Collider implements IGameObjectComponent
 	@Override
 	public void updateComponent()
 	{
-		collider.x = parent.getPosition().x;
-		collider.y = parent.getPosition().y;
-		collider.width = parent.shape.getSize().width;
-		collider.height = parent.shape.getSize().height;
+		collider.setRect(parent.getPosition().getX(),
+				parent.getPosition().getY(),
+				parent.shape.getSize().getWidth(),
+				parent.shape.getSize().getHeight());
 	}
 
 
@@ -110,7 +109,7 @@ public class Collider implements IGameObjectComponent
 		if(visible)
 		{
 			g.setColor(Color.red);
-			g.drawRect(collider.x, collider.y, (int)collider.getWidth(), (int)collider.getHeight());
+			g.drawRect((int)collider.getX(), (int)collider.getY(), (int)collider.getWidth(), (int)collider.getHeight());
 		}
 	}
 }

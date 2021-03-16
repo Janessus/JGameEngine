@@ -15,7 +15,7 @@ public class Game extends JPanel
 
 	JFrame window;
 	Camera camera;
-	ArrayList<GameObject> gameObjects;
+	ArrayList<GameObject> gameObjects, collisionSubscribers;
 	Point mousePos;
 	Player player;
 	Movements moves;
@@ -25,10 +25,12 @@ public class Game extends JPanel
 	{
 		super();
 		this.window = window;
+		gameObjects = new ArrayList<GameObject>();
+		collisionSubscribers = new ArrayList<GameObject>();
 		init();
 	}
 	
-	public void run()
+	private void run()
 	{
 		run = true;
 		long prev = System.nanoTime();
@@ -54,28 +56,22 @@ public class Game extends JPanel
 	
 	
 	//Create initial GameObjects here
-	void setupObjects()
+	private void setupObjects()
 	{
 		Random r = new Random();
-		player = new Player(this, "Player1");
+		player = new Player(this);
 
-		gameObjects = new ArrayList<GameObject>();
 		gameObjects.add(new BasicWall(this, 0, 400, 600, 100));
 		gameObjects.add(new BasicWall(this, 500, 99, 80,80)); 
-		//gameObjects.add(new Coin(this, new Point(700, 300), 10));
 		
 		for(int i = 0; i < 5; i++)
 		{
-			Coin coin = new Coin(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 10);
-			gameObjects.add(coin);
-			
-			MediPack med = new MediPack(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 50);
-			gameObjects.add(med);
-			
-			Adrenalin adrenalin = new Adrenalin(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 50);
-			gameObjects.add(adrenalin);
+			gameObjects.add(new Coin		(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 10));
+			gameObjects.add(new MediPack	(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 50));
+			gameObjects.add(new Adrenalin	(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 50));
 		}
-				
+		
+		gameObjects.add(new ArtificialPlayer(this));
 		gameObjects.add(player);
 		
 		//Set all colliders to visible
@@ -94,7 +90,7 @@ public class Game extends JPanel
 		camera.follow(player);
 	}
 	
-	void init()
+	private void init()
 	{
 		camera = new Camera(this);
 		window.setContentPane(camera);
@@ -127,10 +123,9 @@ public class Game extends JPanel
 		return fps;
 	}
 	
-	
-	public void handleCollisions()
+	private void processCollisionsFor(GameObject g)
 	{
-		ArrayList<IGameObjectComponent> playerComponents = player.getComponentList(Collider.class);
+		ArrayList<IGameObjectComponent> playerComponents = g.getComponentList(Collider.class);
 		
 		if(playerComponents != null)
 		{
@@ -140,7 +135,7 @@ public class Game extends JPanel
 //				for(GameObject go : gameObjects)
 				for(int i = 0; i < gameObjects.size(); i++)
 				{
-					if(!gameObjects.get(i).equals(player))
+					if(!gameObjects.get(i).equals(g))
 					{
 						((Collider)playerComponents.get(k)).collideWith((GameObject)gameObjects.get(i));
 					}
@@ -149,8 +144,19 @@ public class Game extends JPanel
 		}
 	}
 	
+	public void subscribeCollisions(GameObject o)
+	{
+		collisionSubscribers.add(o);
+	}
 	
-	void updateGame()
+	private void handleCollisions()
+	{
+		for(int i = 0; i < collisionSubscribers.size(); i++)
+			processCollisionsFor(collisionSubscribers.get(i));
+	}
+	
+	
+	private void updateGame()
 	{
 		fps = getFPS();
 		mousePos = window.getMousePosition();

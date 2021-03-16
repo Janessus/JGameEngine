@@ -22,6 +22,6 @@ public class AdrenalinShape extends GameShape
 	@Override
 	public void paint(Graphics g)
 	{
-		g.drawImage(texture, getPosition().x - 5, getPosition().y - 5, 70, 70, null);
+		g.drawImage(texture, (int)getPosition().getX() - 5, (int)getPosition().getY() - 5, 70, 70, null);
 	}
 }

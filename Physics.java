@@ -33,25 +33,25 @@ public class Physics implements IGameObjectComponent
 		// s = vt + 1/2at²
 		
 		System.out.println("Accelerate");
-		if(speed.getCombinedLength() < maxSpeed)
+		if(speed.getResultingLength() < maxSpeed)
 		{	
-			this.direction.x += d.x;
-			this.direction.y += d.y;
+//			this.direction.getX() += d.getX();
+//			this.direction.getY() += d.getY();
 			
 			//this.direction.normalize(, acceleration);
 			
 			long dT = new Date().getTime();// - game.prevTime; TODO
 			
-			double dX = speed.x * direction.x * dT + 0.5 * acceleration * direction.x * dT * dT; 
-			double dY = speed.y * direction.y * dT + 0.5 * acceleration * direction.y * dT * dT;
+			double dX = speed.getX() * direction.getX() * dT + 0.5 * acceleration * direction.getX() * dT * dT; 
+			double dY = speed.getY() * direction.getY() * dT + 0.5 * acceleration * direction.getY() * dT * dT;
 			
 			System.out.println("Accelerate(" + dX + ", " + dY + ")" + ", dT=" + dT);
 			
 			if((int)dX > 0 || dY > 0)
 				parent.shape.translate((int)dX, (int)dY);
 			
-			speed.x += acceleration * dT * direction.x;
-			speed.y += acceleration * dT * direction.y;
+//			speed.getX() += acceleration * dT * direction.getX();
+//			speed.getY() += acceleration * dT * direction.getY();
 		}
 	}
 	
@@ -60,13 +60,13 @@ public class Physics implements IGameObjectComponent
 	{
 		long dT = new Date().getTime();// - game.prevTime; TODO
 		
-		System.out.println("speed=" + speed.getCombinedLength());
+		System.out.println("speed=" + speed.getResultingLength());
 		
-		if(speed.getCombinedLength() != 0)
+		if(speed.getResultingLength() != 0)
 		{
-			parent.shape.translate((int)(speed.x * dT * direction.x), (int)(speed.y * dT * direction.y));
-			//speed.x /= friction;
-			//speed.y /= friction;
+			parent.shape.translate((int)(speed.getX() * dT * direction.getX()), (int)(speed.getY() * dT * direction.getY()));
+			//speed.getX() /= friction;
+			//speed.getY() /= friction;
 		}
 	}
 

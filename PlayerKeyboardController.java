@@ -8,15 +8,15 @@ import javax.swing.JFrame;
 public class PlayerKeyboardController implements IGameObjectComponent
 {
 	boolean up, down, left, right; //movement
-	public double speed = 0.6;
+	public double speed = 0.4;
 	double distanceSum = 0;
 	private JFrame window;
-	private Player player;
+	private GameObject player;
 	
-	public PlayerKeyboardController(Player parent, JFrame window)
+	public PlayerKeyboardController(GameObject parent)
 	{
 		this.player = parent;
-		this.window = window;
+		this.window = parent.game.window;
 		up = false;
 		down = false;
 		left = false;
@@ -101,9 +101,13 @@ public class PlayerKeyboardController implements IGameObjectComponent
 	public void updateComponent()
 	{
 		double elapsedTime;
+		double tmpX = 0, tmpY = 0;
+		
+		Direction targetDirection;
+
 		
 		try {
-			elapsedTime = 1000_000_000 / player.game.fps;
+			elapsedTime = 1_000_000_000 / player.game.fps;
 		} 
 		catch (Exception e) 
 		{
@@ -112,21 +116,22 @@ public class PlayerKeyboardController implements IGameObjectComponent
 		
 		if(up | down | left | right)
 		{
-			distanceSum += (speed * elapsedTime)/1_000_000;
-			
-			if(distanceSum < 1)
-				return;
-
-			distanceSum -= (int)distanceSum;
-
 			if(up)
-				((PlayerShape)player.shape).translate(0, -1);
+				tmpY -= 1;
 			if(down)
-				((PlayerShape)player.shape).translate(0, 1);
+				tmpY += 1;
 			if(left)
-				((PlayerShape)player.shape).translate(-1, 0);
+				tmpX -= 1;
 			if(right)
-				((PlayerShape)player.shape).translate(1, 0);
+				tmpX += 1;
+		}
+		
+		targetDirection = new Direction(tmpX, tmpY).normalize();
+		
+		if(targetDirection != null)
+		{	
+			double distanceFactor = (speed * elapsedTime)/1_000_000;
+			player.shape.translate(distanceFactor * targetDirection.getX(), distanceFactor * targetDirection.getY());
 		}
 	}
 

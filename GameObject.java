@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Point2D;
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public abstract class GameObject
 	}
 
 	
-	public Point getPosition()
+	public Point2D getPosition()
 	{
 		return shape.getPosition();
 	}
@@ -66,7 +67,10 @@ public abstract class GameObject
 	
 	public IGameObjectComponent getFirstComponent(Class type)
 	{
-		return getComponentList(type).get(0);
+		ArrayList<IGameObjectComponent> c = getComponentList(type);
+		if(c != null)
+			return c.get(0);
+		else return null;
 	}
 	
 

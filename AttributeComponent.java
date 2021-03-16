@@ -18,7 +18,6 @@ public abstract class AttributeComponent implements IGameObjectComponent
 	
 	public boolean add(int amount)
 	{
-		System.out.println("Adding Health " + amount);
 		if(amount > 0 && value == maxValue)
 			return alreadyFull();
 
@@ -36,5 +35,4 @@ public abstract class AttributeComponent implements IGameObjectComponent
 	{
 		return "(" + value + "/" + maxValue + ")";
 	}
-
 }

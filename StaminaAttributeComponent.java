@@ -39,11 +39,11 @@ public class StaminaAttributeComponent extends AttributeComponent
 		if(visible)
 		{
 			g.setColor(Color.RED);
-			g.fillRect(parent.shape.getPosition().x, parent.shape.getPosition().y + parent.shape.getSize().height + 10, parent.shape.getSize().width, 5);
+			g.fillRect((int)parent.shape.getPosition().getX(), (int)parent.shape.getPosition().getY() + parent.shape.getSize().height + 10, parent.shape.getSize().width, 5);
 			g.setColor(Color.YELLOW);
-			g.fillRect(parent.shape.getPosition().x, parent.shape.getPosition().y + parent.shape.getSize().height + 10, (int)((double)value/(double)maxValue * ((double)parent.shape.getSize().width)), 5);
+			g.fillRect((int)parent.shape.getPosition().getX(), (int)parent.shape.getPosition().getY() + parent.shape.getSize().height + 10, (int)((double)value/(double)maxValue * ((double)parent.shape.getSize().width)), 5);
 			g.setColor(Color.BLACK);
-			g.drawRect(parent.shape.getPosition().x, parent.shape.getPosition().y +  parent.shape.getSize().height + 10, parent.shape.getSize().width, 5);
+			g.drawRect((int)parent.shape.getPosition().getX(), (int)parent.shape.getPosition().getY() +  parent.shape.getSize().height + 10, parent.shape.getSize().width, 5);
 		}
 	}
 
@@ -52,7 +52,6 @@ public class StaminaAttributeComponent extends AttributeComponent
 	public void setVisible(boolean visible)
 	{
 		this.visible = visible;
-		add(-40);
 	}
 }
 
