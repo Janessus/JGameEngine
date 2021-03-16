@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -9,13 +10,15 @@ public class ArtificialPlayerController implements IGameObjectComponent
 	public double speed = 0.4;
 	public double minDistance;
 	int maxDetectionDistance;
+
+	private boolean visible;
 	
 	
 	public ArtificialPlayerController(GameObject parent)
 	{
 		this.parent = parent;
 		maxDetectionDistance = 400;
-		minDistance = 10;
+		minDistance = 20;
 	}
 	
 	
@@ -79,25 +82,40 @@ public class ArtificialPlayerController implements IGameObjectComponent
 			elapsedTime = 0;
 		}
 		
+		//follow target
 		if((targetDirection = getTargetDirection(target)) != null)
 		{	
 			double distanceFactor = (speed * elapsedTime)/1_000_000;
 			if(parent.shape.getCircleEdgeDistance(target.shape) > minDistance)
 				parent.shape.translate(distanceFactor * targetDirection.getX(), distanceFactor * targetDirection.getY());
 		}
+		
+		((CombatComponent)parent.getFirstComponent(CombatComponent.class)).attack(target);
 	}
 
 	
 	@Override
 	public void drawComponent(Graphics g)
 	{
-		// TODO Auto-generated method stub
+		//Viewing range
+		g.setColor(Color.cyan);
+		g.drawOval((int)(parent.shape.getPosition().getX() - maxDetectionDistance + parent.shape.getSize().getWidth()/2), 
+				(int)(parent.shape.getPosition().getY() - maxDetectionDistance + parent.shape.getSize().getHeight()/2), 
+				maxDetectionDistance*2, 
+				maxDetectionDistance*2);
+	
+		//Min distance
+		g.setColor(Color.pink);
+		g.drawOval((int)(parent.shape.getPosition().getX() - (minDistance + parent.shape.getRadius()) + parent.shape.getSize().getWidth()/2), 
+				(int)(parent.shape.getPosition().getY() - (minDistance + parent.shape.getRadius()) + parent.shape.getSize().getHeight()/2), 
+				(int)(minDistance + parent.shape.getRadius())*2, 
+				(int)(minDistance + parent.shape.getRadius())*2);
 	}
 
 	
 	@Override
 	public void setVisible(boolean visible)
 	{
-		// TODO Auto-generated method stub
+		this.visible = visible;
 	}
 }

@@ -7,6 +7,7 @@ public class Player extends GameObject
 		super(game, new PlayerShape());
 		
 		addComponent(new PlayerKeyboardController(this));
+		addComponent(new PlayerMouseController(this));
 		
 		addComponent(new Collider(this));
 		game.subscribeCollisions(this);
@@ -16,6 +17,7 @@ public class Player extends GameObject
 		addComponent(new CollectorComponent(this));
 		addComponent(new CombatComponent(this));
 		
+		getFirstComponent(PlayerMouseController.class).setVisible(true);
 		getFirstComponent(HealthAttributeComponent.class).setVisible(true);
 		getFirstComponent(StaminaAttributeComponent.class).setVisible(true);
 	}

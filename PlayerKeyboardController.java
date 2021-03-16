@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 public class PlayerKeyboardController implements IGameObjectComponent
 {
 	boolean up, down, left, right; //movement
-	public double speed = 0.4;
+	public double speed = 0.5;
 	double distanceSum = 0;
 	private JFrame window;
 	private GameObject player;
@@ -73,7 +73,6 @@ public class PlayerKeyboardController implements IGameObjectComponent
 				case KeyEvent.VK_D:
 					setMoving(Movements.RIGHT, true);
 					break;
-				
 				}
 			}
 		});
@@ -104,7 +103,6 @@ public class PlayerKeyboardController implements IGameObjectComponent
 		double tmpX = 0, tmpY = 0;
 		
 		Direction targetDirection;
-
 		
 		try {
 			elapsedTime = 1_000_000_000 / player.game.fps;
@@ -139,13 +137,11 @@ public class PlayerKeyboardController implements IGameObjectComponent
 	public void drawComponent(Graphics g)
 	{
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void setVisible(boolean visible)
 	{
 		// TODO Auto-generated method stub
-		
 	}
 }

@@ -55,7 +55,7 @@ public abstract class GameShape
 	
 	public Point2D getCenter()
 	{
-		return new Point2D.Double(position.getX() - size.width/2 - offset.getX(), position.getY() - size.height/2 - offset.getY());
+		return new Point2D.Double(position.getX() + size.width/2, position.getY() + size.height/2);
 	}
 
 	public void setPosition(Point2D p)
