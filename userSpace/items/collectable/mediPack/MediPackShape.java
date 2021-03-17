@@ -1,4 +1,4 @@
-package userSpace;
+package userSpace.items.collectable.mediPack;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;

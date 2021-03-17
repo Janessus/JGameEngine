@@ -1,7 +1,7 @@
 package gameObject.components;
 import gameObject.GameObject;
 
-public abstract class AttributeComponent implements IGameObjectComponent
+public abstract class AttributeComponent extends GameObjectComponent
 {
 	private GameObject parent;
 	private int maxValue;

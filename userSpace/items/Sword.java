@@ -1,4 +1,4 @@
-package userSpace;
+package userSpace.items;
 import java.awt.Graphics;
 import java.util.ArrayList;
 

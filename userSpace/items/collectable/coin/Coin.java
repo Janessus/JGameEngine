@@ -1,4 +1,4 @@
-package userSpace;
+package userSpace.items.collectable.coin;
 import java.awt.Point;
 
 import core.Game;

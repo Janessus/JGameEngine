@@ -7,7 +7,7 @@ import templates.Armor;
 import templates.Direction;
 import templates.Weapon;
 
-public class CombatComponent implements IGameObjectComponent
+public class CombatComponent extends GameObjectComponent
 {
 	private GameObject parent;
 	private Direction attackDirection;

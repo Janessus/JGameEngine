@@ -1,4 +1,4 @@
-package userSpace;
+package userSpace.controllers;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -8,10 +8,10 @@ import javax.swing.JFrame;
 
 import core.Movements;
 import gameObject.GameObject;
-import gameObject.components.IGameObjectComponent;
+import gameObject.components.GameObjectComponent;
 import templates.Direction;
 
-public class PlayerKeyboardController implements IGameObjectComponent
+public class PlayerKeyboardController extends GameObjectComponent
 {
 	private boolean up, down, left, right; //movement
 	private double speed = 0.5;

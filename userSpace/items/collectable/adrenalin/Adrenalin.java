@@ -1,4 +1,4 @@
-package userSpace;
+package userSpace.items.collectable.adrenalin;
 import java.awt.Point;
 
 import core.Game;

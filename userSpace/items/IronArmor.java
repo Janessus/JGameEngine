@@ -1,4 +1,4 @@
-package userSpace;
+package userSpace.items;
 import templates.Armor;
 
 public class IronArmor extends Armor

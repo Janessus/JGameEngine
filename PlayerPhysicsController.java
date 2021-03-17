@@ -4,11 +4,11 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
-import gameObject.components.IGameObjectComponent;
+import gameObject.components.GameObjectComponent;
 import templates.Direction;
-import userSpace.Player;
+import userSpace.players.Player;
 
-public class PlayerPhysicsController implements IGameObjectComponent
+public class PlayerPhysicsController extends GameObjectComponent
 {
 	
 	private JFrame window;

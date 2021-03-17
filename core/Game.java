@@ -10,14 +10,14 @@ import javax.swing.*;
 
 import gameObject.GameObject;
 import gameObject.components.Collider;
-import gameObject.components.IGameObjectComponent;
-import templates.ArtificialPlayer;
-import userSpace.Adrenalin;
-import userSpace.BasicWall;
+import gameObject.components.GameObjectComponent;
 import userSpace.Camera;
-import userSpace.Coin;
-import userSpace.MediPack;
-import userSpace.Player;
+import userSpace.items.collectable.adrenalin.Adrenalin;
+import userSpace.items.collectable.coin.Coin;
+import userSpace.items.collectable.mediPack.MediPack;
+import userSpace.items.solid.walls.BasicWall;
+import userSpace.players.ArtificialPlayer;
+import userSpace.players.Player;
 
 public class Game extends JPanel
 {
@@ -86,7 +86,7 @@ public class Game extends JPanel
 		//Set all colliders to visible
 		for(int i = 0; i < getGameObjects().size(); i++)
 		{
-			ArrayList<IGameObjectComponent> components = getGameObjects().get(i).getComponentList(Collider.class);
+			ArrayList<GameObjectComponent> components = getGameObjects().get(i).getComponentList(Collider.class);
 			
 			if(components != null)
 			{
@@ -136,7 +136,7 @@ public class Game extends JPanel
 	
 	private void processCollisionsFor(GameObject g)
 	{
-		ArrayList<IGameObjectComponent> playerComponents = g.getComponentList(Collider.class);
+		ArrayList<GameObjectComponent> playerComponents = g.getComponentList(Collider.class);
 		
 		if(playerComponents != null)
 		{

@@ -1,4 +1,4 @@
-package userSpace;
+package userSpace.items.collectable.mediPack;
 import java.awt.Point;
 
 import core.Game;

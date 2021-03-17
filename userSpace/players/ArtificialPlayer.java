@@ -1,14 +1,14 @@
-package templates;
+package userSpace.players;
 import core.Game;
 import gameObject.GameObject;
 import gameObject.components.CollectorComponent;
 import gameObject.components.Collider;
 import gameObject.components.CombatComponent;
 import gameObject.components.HealthAttributeComponent;
-import userSpace.ArtificialPlayerController;
-import userSpace.ArtificialPlayerShape;
-import userSpace.IronArmor;
-import userSpace.Sword;
+import templates.ArmorAttributeComponent;
+import userSpace.controllers.ArtificialPlayerController;
+import userSpace.items.IronArmor;
+import userSpace.items.Sword;
 
 public class ArtificialPlayer extends GameObject
 {

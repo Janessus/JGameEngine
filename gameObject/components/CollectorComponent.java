@@ -5,7 +5,7 @@ import java.util.List;
 import gameObject.GameObject;
 import templates.Collectables;
 
-public class CollectorComponent implements IGameObjectComponent, ICollisionHandler
+public class CollectorComponent extends GameObjectComponent implements ICollisionHandler
 {
 	private int gold;
 	private int xp;
@@ -52,7 +52,7 @@ public class CollectorComponent implements IGameObjectComponent, ICollisionHandl
 	@Override
 	public boolean handleCollisionWith(GameObject o) {
 		boolean returnVal = false;
-		List<IGameObjectComponent> list = o.getComponentList(CollectableComponent.class);
+		List<GameObjectComponent> list = o.getComponentList(CollectableComponent.class);
 		if(list != null)
 		{
 			for(int i = 0; i < list.size(); i++)

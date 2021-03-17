@@ -7,6 +7,7 @@ public abstract class Armor
 	private double damageReductionFactor;
 	private CombatComponent owner;
 	
+	
 	public Armor(double reductionFactor)
 	{
 		this.damageReductionFactor = reductionFactor;
@@ -19,6 +20,7 @@ public abstract class Armor
 		return damageReductionFactor;
 	}
 
+	
 	//decreases the durability of the armor and destroys it if below 0.
 	//returns the remaining damage
 	public double getHit(double damage)
@@ -35,10 +37,12 @@ public abstract class Armor
 		return restDamage;
 	}
 	
+	
 	public void setOwnerComponent(CombatComponent c)
 	{
 		this.owner = c;
 	}
+	
 	
 	public int getDurability()
 	{

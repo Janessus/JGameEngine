@@ -1,4 +1,4 @@
-package userSpace;
+package userSpace.players;
 import core.Game;
 import gameObject.GameObject;
 import gameObject.components.CollectorComponent;
@@ -7,6 +7,10 @@ import gameObject.components.CombatComponent;
 import gameObject.components.HealthAttributeComponent;
 import gameObject.components.StaminaAttributeComponent;
 import templates.ArmorAttributeComponent;
+import userSpace.controllers.PlayerKeyboardController;
+import userSpace.controllers.PlayerMouseController;
+import userSpace.items.IronArmor;
+import userSpace.items.Sword;
 
 public class Player extends GameObject
 {	

@@ -1,4 +1,4 @@
-package userSpace;
+package userSpace.items.solid.walls;
 import core.Game;
 import gameObject.GameObject;
 import gameObject.components.Collider;

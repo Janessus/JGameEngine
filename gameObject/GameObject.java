@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 import core.Game;
 import templates.GameShape;
-import gameObject.components.IGameObjectComponent;
+import gameObject.components.GameObjectComponent;
 
 @SuppressWarnings("serial")
 public abstract class GameObject
@@ -24,7 +24,7 @@ public abstract class GameObject
 	private GameShape shape;
 	private Game game;
 	
-	ArrayList<IGameObjectComponent> objectComponents;
+	ArrayList<GameObjectComponent> objectComponents;
 	
 	protected GameObject(Game game, GameShape shape)
 	{
@@ -56,38 +56,38 @@ public abstract class GameObject
 	}
 
 	
-	public void addComponent(IGameObjectComponent c)
+	public void addComponent(GameObjectComponent c)
 	{
 		if(objectComponents == null)
-			objectComponents = new ArrayList<IGameObjectComponent>();
+			objectComponents = new ArrayList<GameObjectComponent>();
 		objectComponents.add(c);
 	}
 	
 	
-	public void removeComponent(IGameObjectComponent c)
+	public void removeComponent(GameObjectComponent c)
 	{
 		if(objectComponents != null)
 			objectComponents.remove(c);
 	}
 	
 	
-	public IGameObjectComponent getFirstComponent(Class type)
+	public GameObjectComponent getFirstComponent(Class type)
 	{
-		ArrayList<IGameObjectComponent> c = getComponentList(type);
+		ArrayList<GameObjectComponent> c = getComponentList(type);
 		if(c != null)
 			return c.get(0);
 		else return null;
 	}
 	
 
-	public ArrayList<IGameObjectComponent> getComponentList(Class type)
+	public ArrayList<GameObjectComponent> getComponentList(Class type)
 	{
 		if(objectComponents == null)
 			return null;
 		
-		ArrayList<IGameObjectComponent> results = new ArrayList<IGameObjectComponent>();
+		ArrayList<GameObjectComponent> results = new ArrayList<GameObjectComponent>();
 		
-		for(IGameObjectComponent goc : objectComponents)
+		for(GameObjectComponent goc : objectComponents)
 		{
 			if(goc.getClass().equals(type) || Arrays.asList(goc.getClass().getInterfaces()).contains(type))
 			{
@@ -136,7 +136,7 @@ public abstract class GameObject
 	}
 
 
-	public ArrayList<IGameObjectComponent> getObjectComponents()
+	public ArrayList<GameObjectComponent> getObjectComponents()
 	{
 		return objectComponents;
 	}

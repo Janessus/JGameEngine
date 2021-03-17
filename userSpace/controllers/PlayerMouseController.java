@@ -1,4 +1,4 @@
-package userSpace;
+package userSpace.controllers;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -8,10 +8,10 @@ import javax.swing.JFrame;
 
 import gameObject.GameObject;
 import gameObject.components.CombatComponent;
-import gameObject.components.IGameObjectComponent;
+import gameObject.components.GameObjectComponent;
 import templates.Direction;
 
-public class PlayerMouseController implements IGameObjectComponent
+public class PlayerMouseController extends GameObjectComponent
 {
 	private JFrame window;
 	private GameObject player;

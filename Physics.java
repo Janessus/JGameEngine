@@ -4,10 +4,10 @@ import java.util.Vector;
 
 import core.Game;
 import gameObject.GameObject;
-import gameObject.components.IGameObjectComponent;
+import gameObject.components.GameObjectComponent;
 import templates.Direction;
 
-public class Physics implements IGameObjectComponent
+public class Physics extends GameObjectComponent
 {
 	private double mass;
 	double friction = 1.001;

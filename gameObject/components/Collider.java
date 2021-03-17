@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import gameObject.GameObject;
 
-public class Collider implements IGameObjectComponent
+public class Collider extends GameObjectComponent
 {
 	private Rectangle2D collider;
 	private GameObject parent;
@@ -59,7 +59,7 @@ public class Collider implements IGameObjectComponent
 	public void collideWith(GameObject o)
 	{
 		boolean solveRequest = false;
-		ArrayList<IGameObjectComponent> colliders = o.getComponentList(Collider.class);
+		ArrayList<GameObjectComponent> colliders = o.getComponentList(Collider.class);
 		
 		if(colliders == null)
 			return;
@@ -71,7 +71,7 @@ public class Collider implements IGameObjectComponent
 				if(!collider.equals(((Collider)colliders.get(i)).getBounds()) && collider.intersects(((Collider)colliders.get(i)).getBounds()))
 				{
 					//Collision confirmed	
-					ArrayList<IGameObjectComponent> handlers = parent.getComponentList(ICollisionHandler.class);
+					ArrayList<GameObjectComponent> handlers = parent.getComponentList(ICollisionHandler.class);
 					solveRequest = false;
 					if(handlers != null)
 					{

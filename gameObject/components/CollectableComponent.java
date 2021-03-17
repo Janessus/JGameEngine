@@ -7,7 +7,7 @@ import templates.Collectables;
 import templates.GameShape;
 
 @SuppressWarnings("serial")
-public class CollectableComponent implements IGameObjectComponent, ICollisionHandler
+public class CollectableComponent extends GameObjectComponent implements ICollisionHandler
 {	
 	private Collectables type;
 	private int value = 0;
@@ -36,7 +36,7 @@ public class CollectableComponent implements IGameObjectComponent, ICollisionHan
 	// returns true if the item was not destroyed, false if the object was collected and destroyed
 	public boolean onCollision(GameObject o)
 	{
-		ArrayList<IGameObjectComponent> components = o.getComponentList(CollectorComponent.class);
+		ArrayList<GameObjectComponent> components = o.getComponentList(CollectorComponent.class);
 		if(components != null)
 		{
 			for(int i = 0; i < components.size(); i++)
