@@ -102,7 +102,7 @@ public class PlayerKeyboardController extends GameObjectComponent
 	@Override
 	public void updateComponent()
 	{
-		double elapsedTime;
+		double elapsedTime; //in ns
 		double tmpX = 0, tmpY = 0;
 		
 		Direction targetDirection;

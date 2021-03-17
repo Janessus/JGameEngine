@@ -8,7 +8,6 @@ import templates.IAnimationFrame;
 
 public class SwordAttackAnimation extends Animation
 {
-
 	public SwordAttackAnimation(int milliDuration, List<IAnimationFrame> animationFrames)
 	{
 		super(milliDuration, animationFrames);
@@ -27,5 +26,4 @@ public class SwordAttackAnimation extends Animation
 			}
 		});
 	}
-
 }
