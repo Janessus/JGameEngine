@@ -4,6 +4,10 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
+import gameObject.components.IGameObjectComponent;
+import templates.Direction;
+import userSpace.Player;
+
 public class PlayerPhysicsController implements IGameObjectComponent
 {
 	

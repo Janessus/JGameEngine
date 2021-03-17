@@ -2,6 +2,11 @@ import java.awt.Graphics;
 import java.util.Date;
 import java.util.Vector;
 
+import core.Game;
+import gameObject.GameObject;
+import gameObject.components.IGameObjectComponent;
+import templates.Direction;
+
 public class Physics implements IGameObjectComponent
 {
 	private double mass;
@@ -48,7 +53,7 @@ public class Physics implements IGameObjectComponent
 			System.out.println("Accelerate(" + dX + ", " + dY + ")" + ", dT=" + dT);
 			
 			if((int)dX > 0 || dY > 0)
-				parent.shape.translate((int)dX, (int)dY);
+				parent.getShape().translate((int)dX, (int)dY);
 			
 //			speed.getX() += acceleration * dT * direction.getX();
 //			speed.getY() += acceleration * dT * direction.getY();
@@ -64,7 +69,7 @@ public class Physics implements IGameObjectComponent
 		
 		if(speed.getResultingLength() != 0)
 		{
-			parent.shape.translate((int)(speed.getX() * dT * direction.getX()), (int)(speed.getY() * dT * direction.getY()));
+			parent.getShape().translate((int)(speed.getX() * dT * direction.getX()), (int)(speed.getY() * dT * direction.getY()));
 			//speed.getX() /= friction;
 			//speed.getY() /= friction;
 		}
