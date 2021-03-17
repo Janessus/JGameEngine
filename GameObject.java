@@ -81,7 +81,6 @@ public abstract class GameObject
 		
 		ArrayList<IGameObjectComponent> results = new ArrayList<IGameObjectComponent>();
 		
-		
 		for(IGameObjectComponent goc : objectComponents)
 		{
 			if(goc.getClass().equals(type) || Arrays.asList(goc.getClass().getInterfaces()).contains(type))

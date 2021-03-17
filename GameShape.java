@@ -47,7 +47,6 @@ public abstract class GameShape
 		return size;
 	}
 
-	
 	public Point2D getPosition()
 	{
 		return position;

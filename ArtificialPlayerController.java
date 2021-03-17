@@ -88,9 +88,9 @@ public class ArtificialPlayerController implements IGameObjectComponent
 			double distanceFactor = (speed * elapsedTime)/1_000_000;
 			if(parent.shape.getCircleEdgeDistance(target.shape) > minDistance)
 				parent.shape.translate(distanceFactor * targetDirection.getX(), distanceFactor * targetDirection.getY());
+			
+			((CombatComponent)parent.getFirstComponent(CombatComponent.class)).attack(targetDirection);
 		}
-		
-		((CombatComponent)parent.getFirstComponent(CombatComponent.class)).attack(target);
 	}
 
 	

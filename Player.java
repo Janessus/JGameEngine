@@ -17,8 +17,11 @@ public class Player extends GameObject
 		addComponent(new CollectorComponent(this));
 		addComponent(new CombatComponent(this));
 		
+		((CombatComponent)getFirstComponent(CombatComponent.class)).equipWeapon(new Sword(50, 5, 100, 100));
+		
 		getFirstComponent(PlayerMouseController.class).setVisible(true);
 		getFirstComponent(HealthAttributeComponent.class).setVisible(true);
 		getFirstComponent(StaminaAttributeComponent.class).setVisible(true);
+		getFirstComponent(CombatComponent.class).setVisible(true);
 	}
 }

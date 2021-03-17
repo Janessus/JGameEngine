@@ -3,20 +3,25 @@ import java.awt.Graphics;
 
 public class CombatComponent implements IGameObjectComponent
 {
-	private GameObject parent;
-	private double maxAttackRange = 50;
+	GameObject parent;
+	private Direction attackDirection;
+	private boolean attacking;
 	private Weapon equippedWeapon;
 	private Armor equippedArmor;
 	private boolean visible;
 	
+	
 	public CombatComponent(GameObject parent)
 	{
 		this.parent = parent;
+		attacking = false;
+		visible = false;
 	}
 	
+	/*
 	private boolean canAttack(GameObject o)
 	{
-		if(o.shape.getCircleEdgeDistance(this.parent.shape) <= maxAttackRange && equippedWeapon.isAttackReady())
+	-----> if(o.shape.getCircleEdgeDistance(this.parent.shape) <= maxAttackRange) <-------
 		{
 			CombatComponent enemy = (CombatComponent) o.getFirstComponent(CombatComponent.class);
 			if(enemy != null)
@@ -25,24 +30,19 @@ public class CombatComponent implements IGameObjectComponent
 		return false;
 	}
 	
-	public void attack(GameObject o)
-	{
-		if(o != null && canAttack(o))
-		{
-			System.out.println(this.parent + " attacking " + o);
-			equippedWeapon.attack((CombatComponent)o.getFirstComponent(CombatComponent.class));
-		}
-	}
+	*/
 	
-	
+
 	public void attack(Direction direction)
 	{
 		if(direction != null && equippedWeapon != null)
 		{
-			equippedWeapon.attack(direction);
+			if(equippedWeapon.attack(direction))
+			{
+				
+			}
 		}
 	}
-	
 	
 	
 	public void handleAttack(CombatComponent combat)
@@ -55,9 +55,9 @@ public class CombatComponent implements IGameObjectComponent
 		else
 			damage = combat.getWeapon().getDamage();
 		((HealthAttributeComponent)parent.getFirstComponent(HealthAttributeComponent.class)).add((int)-damage);
-		
 	}
 
+	
 	public Weapon getWeapon()
 	{
 		return equippedWeapon;
@@ -67,48 +67,66 @@ public class CombatComponent implements IGameObjectComponent
 	@Override
 	public void updateComponent()
 	{
-
+		if(attacking && attackDirection != null)
+		{
+			attack(attackDirection);
+		}
 	}
+	
 
 	@Override
 	public void drawComponent(Graphics g)
 	{
-		if(visible)
+		if(visible && equippedWeapon != null)
 		{
 			//maxAttackRange
 			g.setColor(Color.green);
-			g.drawOval((int)(parent.shape.getPosition().getX() - maxAttackRange + parent.shape.getSize().getWidth()/2)
-					, (int)(parent.shape.getPosition().getY() - maxAttackRange + parent.shape.getSize().getHeight()/2)
-					, (int)(maxAttackRange)*2
-					, (int)(maxAttackRange)*2);
-			
+			g.drawOval((int)(parent.shape.getPosition().getX() - equippedWeapon.range + parent.shape.getSize().getWidth()/2)
+					, (int)(parent.shape.getPosition().getY() - equippedWeapon.range + parent.shape.getSize().getHeight()/2)
+					, (int)(equippedWeapon.range)*2
+					, (int)(equippedWeapon.range)*2);
 		}
 	}
 
+	
 	@Override
 	public void setVisible(boolean visible)
 	{
 		this.visible = visible;
 	}
 
+	
 	public void equipArmor(Armor armor)
 	{
 		this.equippedArmor = armor;
 	}
 	
+	
 	public void equipWeapon(Weapon weapon)
 	{
 		equippedWeapon = weapon;
+		equippedWeapon.setOwnerComponent(this);
 	}
 
+	
 	public Armor getArmor()
 	{
 		return equippedArmor;
 	}
 
+	
 	public void destroyArmor()
 	{
 		equippedArmor = null;
+	}
+
+
+	public void setAttacking(boolean b, Direction direction)
+	{
+		attacking = b;
+		attackDirection = direction;
+		if(b == false)
+			attackDirection = null;
 	}
 
 	

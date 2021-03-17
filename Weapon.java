@@ -1,12 +1,21 @@
+import java.awt.Graphics;
+import java.util.ArrayList;
 
 public abstract class Weapon
 {
 	private int damage;
 	private int durability;
-	private int range;
+	protected int range;
 	private double attackSpeed;
 	private long attackTime;
-	private CombatComponent owner;
+	CombatComponent owner;
+	
+	protected int frameCount;
+	
+	public abstract ArrayList<CombatComponent> getEnemiesInAttackBox(Direction mouseDirection);
+	public abstract void playAnimation(Graphics g);
+	
+
 	
 	public Weapon(int damage, double attackSpeed, int range, int durability) //TODO implement range
 	{
@@ -17,36 +26,57 @@ public abstract class Weapon
 		attackTime = System.nanoTime();
 	}
 	
+	
 	public void setOwnerComponent(CombatComponent c)
 	{
 		this.owner = c;
 	}
+	
 	
 	private long getTimeSinceAttack()
 	{
 		return System.nanoTime() - attackTime;
 	}
 	
-	public boolean isAttackReady()
+	
+	private boolean isAttackReady()
 	{
 		if((getTimeSinceAttack() >= (1/attackSpeed) * 1_000_000_000) && durability > 0)
 			return true;
 		return false;
 	}
 	
-	public void attack(CombatComponent c)
+	
+	private void sendAttackMessage(CombatComponent c)
 	{
-		if(c != null && isAttackReady())
+		if(c != null)
 		{
-			attackTime = System.nanoTime();
 			c.handleAttack(owner);
 		}	
 	}
+	
+	
+	public boolean attack(Direction direction)
+	{
+		ArrayList<CombatComponent> enemies = getEnemiesInAttackBox(direction);
+		if(enemies != null && isAttackReady())
+		{
+			attackTime = System.nanoTime();
+			
+			System.out.println(owner + " is attacking: " + enemies.get(0).parent);
+			
+			for(int i = 0; i < enemies.size(); i++)
+			{
+				sendAttackMessage(enemies.get(i));
+			}
+			return true;
+		}
+		return false;
+	}
+	
 	
 	public double getDamage()
 	{
 		return damage;
 	}
-
-	public abstract void attack(Direction direction);
 }

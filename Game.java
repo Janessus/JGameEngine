@@ -30,6 +30,7 @@ public class Game extends JPanel
 		init();
 	}
 	
+	
 	private void run()
 	{
 		run = true;
@@ -43,12 +44,9 @@ public class Game extends JPanel
 			updateGame();
 			repaint();
 			
-			
-			
 			//fps
 			if(currentTime - prev == 0)
 				--prev;
-			
 			fps = (int)((1000.0 * 1000000) / (currentTime - prev));
 			prev = currentTime;
 		}
@@ -90,6 +88,7 @@ public class Game extends JPanel
 		camera.follow(player);
 	}
 	
+	
 	private void init()
 	{
 		camera = new Camera(this);
@@ -123,6 +122,7 @@ public class Game extends JPanel
 		return fps;
 	}
 	
+	
 	private void processCollisionsFor(GameObject g)
 	{
 		ArrayList<IGameObjectComponent> playerComponents = g.getComponentList(Collider.class);
@@ -144,10 +144,12 @@ public class Game extends JPanel
 		}
 	}
 	
+	
 	public void subscribeCollisions(GameObject o)
 	{
 		collisionSubscribers.add(o);
 	}
+	
 	
 	private void handleCollisions()
 	{
@@ -160,8 +162,8 @@ public class Game extends JPanel
 	{
 		fps = getFPS();
 		mousePos = window.getMousePosition();
-		for(GameObject go : gameObjects)
-			go.updateObject();
+		for(int i = 0; i < gameObjects.size(); i++)
+			gameObjects.get(i).updateObject();
 		
 		handleCollisions();
 	}
@@ -181,8 +183,7 @@ public class Game extends JPanel
 		else
 			g.drawString("Mouse=" + mousePos.x + ", " + mousePos.y, 0, 30);
 	}
-	
-	
+
 	
 	public static void main(String[] args)
 	{

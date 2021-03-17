@@ -1,7 +1,6 @@
 
 public class IronArmor extends Armor
 {
-
 	public IronArmor(int durability, double reductionFactor)
 	{
 		super(reductionFactor);

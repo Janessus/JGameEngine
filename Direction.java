@@ -11,6 +11,12 @@ public class Direction
 		this.y = y;
 	}
 	
+	public Direction()
+	{
+		x = 0;
+		y = 0;
+	}
+
 	public double getX()
 	{
 		return x;
@@ -20,6 +26,14 @@ public class Direction
 	{
 		return y;
 	}
+	
+	
+	public double getAngle(Direction d)
+	{
+		double dotProduct = (x * d.x) + (y * d.y);
+		return Math.acos(dotProduct/(getResultingLength() * d.getResultingLength())) * (180/Math.PI); 
+	}
+	
 
 	public double getResultingLength()
 	{
@@ -29,7 +43,16 @@ public class Direction
 	
 	public static Direction getDirection(Point2D from, Point2D to)
 	{
+		if(from == null || to == null)
+			return null;
 		return new Direction(to.getX() - from.getX(), to.getY() - from.getY()).normalize();
+	}
+	
+	public Direction getDirection(Point2D to)
+	{
+		if(to == null)
+			return null;
+		return new Direction(to.getX() - getX(), to.getY() - getY()).normalize();
 	}
 
 	
@@ -42,6 +65,12 @@ public class Direction
 			y /= l;
 		}
 		return this;
+	}
+	
+	public void setDirection(double x, double y)
+	{
+		this.x = x;
+		this.y = y;
 	}
 	
 	public String toString()

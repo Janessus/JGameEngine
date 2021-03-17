@@ -9,6 +9,7 @@ public class PlayerMouseController implements IGameObjectComponent
 {
 	private JFrame window;
 	private GameObject player;
+	private Direction mouseDirection;
 	private boolean attacking;
 	private boolean visible;
 	
@@ -19,6 +20,7 @@ public class PlayerMouseController implements IGameObjectComponent
 		this.window = parent.game.window;
 		this.attacking = false;
 		this.visible = false;
+		mouseDirection = new Direction();
 		setupListeners();
 	}
 	
@@ -49,28 +51,28 @@ public class PlayerMouseController implements IGameObjectComponent
 
 			@Override
 			public void mousePressed(MouseEvent arg0)
-			{
-				attacking = true;
-
+			{				
+				((CombatComponent)player.getFirstComponent(CombatComponent.class)).setAttacking(true, mouseDirection);	
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent arg0)
 			{
-				attacking = false;
+				((CombatComponent)player.getFirstComponent(CombatComponent.class)).setAttacking(false, mouseDirection);	
 			}
-			
-			
 		});
 	}
 	
 	@Override
 	public void updateComponent()
 	{
+		Direction tmp = Direction.getDirection(player.shape.getCenter(), player.game.mousePos);
+		if(tmp != null)
+			mouseDirection.setDirection(tmp.getX(), tmp.getY());
+
 		if(attacking)
 		{
-			Direction direction = Direction.getDirection(player.shape.getCenter(), player.game.mousePos);
-			((CombatComponent)player.getFirstComponent(CombatComponent.class)).attack(direction);	
+			
 		}
 	}
 
@@ -80,8 +82,8 @@ public class PlayerMouseController implements IGameObjectComponent
 		if(visible)
 		{
 			g.setColor(Color.gray);
-			Direction direction = Direction.getDirection(player.shape.getCenter(), player.game.window.getMousePosition());
-			g.fillOval((int)(player.shape.getCenter().getX() + direction.getX() * player.shape.getSize().getWidth() * 0.7)-4, (int)(player.shape.getCenter().getY() + direction.getY() * player.shape.getSize().getHeight() * 0.7)-4, 8, 8);
+//			Direction mouseDirection = Direction.getDirection(player.shape.getCenter(), player.game.window.getMousePosition());
+			g.fillOval((int)(player.shape.getCenter().getX() + mouseDirection.getX() * player.shape.getSize().getWidth() * 0.7)-4, (int)(player.shape.getCenter().getY() + mouseDirection.getY() * player.shape.getSize().getHeight() * 0.7)-4, 8, 8);
 		}
 	}
 
