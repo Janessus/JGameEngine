@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 
 import javax.swing.*;
@@ -19,6 +18,7 @@ import userSpace.items.solid.walls.BasicWall;
 import userSpace.players.artificialPlayer.ArtificialPlayer;
 import userSpace.players.humanPlayer.Player;
 
+@SuppressWarnings("serial")
 public class Game extends JPanel
 {
 	private boolean run = false;

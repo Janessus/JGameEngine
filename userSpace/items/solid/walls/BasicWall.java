@@ -3,7 +3,6 @@ import core.Game;
 import gameObject.GameObject;
 import gameObject.components.collider.Collider;
 
-@SuppressWarnings("serial")
 public class BasicWall extends GameObject
 {
 	public BasicWall(Game game, int x, int y, int w, int h)

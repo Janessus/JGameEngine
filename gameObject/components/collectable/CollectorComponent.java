@@ -10,16 +10,11 @@ import gameObject.components.attributeComponent.StaminaAttributeComponent;
 
 public class CollectorComponent extends GameObjectComponent implements ICollisionHandler
 {
-	private int gold;
-	private int xp;
-	
 	private GameObject parent;
 	
 	public CollectorComponent(GameObject parent)
 	{
 		this.parent = parent;
-		gold = 0;
-		xp = 0;
 	}
 	
 	//returns true if the item was collectet
@@ -27,7 +22,6 @@ public class CollectorComponent extends GameObjectComponent implements ICollisio
 	{
 		switch (type) {
 		case GOLD:
-			gold += value;
 			return true;
 			
 		case HEALTH:
@@ -37,7 +31,6 @@ public class CollectorComponent extends GameObjectComponent implements ICollisio
 			return health.add(value);
 			
 		case XP:
-			xp += value;
 			return true;
 			
 		case STAMINA:

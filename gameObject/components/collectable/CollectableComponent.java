@@ -7,7 +7,6 @@ import gameObject.components.GameObjectComponent;
 import gameObject.components.ICollisionHandler;
 import templates.GameShape;
 
-@SuppressWarnings("serial")
 public class CollectableComponent extends GameObjectComponent implements ICollisionHandler
 {	
 	private Collectables type;

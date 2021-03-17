@@ -7,7 +7,6 @@ import gameObject.components.collectable.CollectableComponent;
 import gameObject.components.collectable.Collectables;
 import gameObject.components.collider.Collider;
 
-@SuppressWarnings("serial")
 public class Coin extends GameObject
 {
 	public Coin(Game game, Point pos, int value)

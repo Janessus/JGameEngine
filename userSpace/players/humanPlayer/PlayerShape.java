@@ -1,9 +1,6 @@
 package userSpace.players.humanPlayer;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Shape;
 
 import templates.GameShape;
 

@@ -2,8 +2,6 @@ package userSpace.players.humanPlayer;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Date;
-
 import javax.swing.JFrame;
 
 import core.Direction;

@@ -7,15 +7,13 @@ public abstract class GameShape
 {
 	private Point2D position;	//absolute
 	private Dimension size;
-	private Point2D offset;	//relative to center
-	
 	public abstract void paint(Graphics g);
 	
 	public GameShape(int x, int y, int w, int h)
 	{
 		position = new Point2D.Double(x, y);
 		size = new Dimension(w, h);
-		offset = new Point2D.Double(0, 0);
+		new Point2D.Double(0, 0);
 	}
 	
 	public double getCenterDistance(GameShape target)
@@ -35,7 +33,6 @@ public abstract class GameShape
 	
 	public void setOffset(Point2D p)
 	{
-		offset = p;
 	}
 
 	public void setSize(int w, int h)

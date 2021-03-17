@@ -1,9 +1,6 @@
 package userSpace.items.solid.walls;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-
 import templates.GameShape;
 
 public class RectShape extends GameShape

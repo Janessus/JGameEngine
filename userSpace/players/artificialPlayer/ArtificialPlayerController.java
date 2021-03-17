@@ -2,8 +2,6 @@ package userSpace.players.artificialPlayer;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.swing.JFrame;
-
 import core.Direction;
 import gameObject.GameObject;
 import gameObject.components.GameObjectComponent;
