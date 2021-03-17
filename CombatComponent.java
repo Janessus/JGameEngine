@@ -49,14 +49,30 @@ public class CombatComponent implements IGameObjectComponent
 	{
 		System.out.println(this.parent + " getting attacked by " + combat.parent);
 		double damage = 0;
-		ArmorAttributeComponent armor = (ArmorAttributeComponent) parent.getFirstComponent(ArmorAttributeComponent.class);
-		if(armor != null)
-			damage = combat.getWeapon().getDamage() * armor.getReductionFactor();
+
+		if(equippedArmor != null)
+		{
+			damage = combat.getWeapon().getDamage() * equippedArmor.getReductionFactor();
+			damage = equippedArmor.getHit(damage);
+		}
 		else
 			damage = combat.getWeapon().getDamage();
 		((HealthAttributeComponent)parent.getFirstComponent(HealthAttributeComponent.class)).add((int)-damage);
 	}
+	
+	
+	public void handleAttack(Weapon weapon)
+	{
+		System.out.println(this.parent + " getting attacked by " + weapon);
+		double damage = 0;
 
+		if(equippedArmor != null)
+			damage = weapon.getDamage() * equippedArmor.getReductionFactor();
+		else
+			damage = weapon.getDamage();
+		((HealthAttributeComponent)parent.getFirstComponent(HealthAttributeComponent.class)).add((int)-damage);
+	}
+	
 	
 	public Weapon getWeapon()
 	{
@@ -128,6 +144,4 @@ public class CombatComponent implements IGameObjectComponent
 		if(b == false)
 			attackDirection = null;
 	}
-
-	
 }

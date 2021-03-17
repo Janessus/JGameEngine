@@ -97,19 +97,22 @@ public class ArtificialPlayerController implements IGameObjectComponent
 	@Override
 	public void drawComponent(Graphics g)
 	{
-		//Viewing range
-		g.setColor(Color.cyan);
-		g.drawOval((int)(parent.shape.getPosition().getX() - maxDetectionDistance + parent.shape.getSize().getWidth()/2), 
-				(int)(parent.shape.getPosition().getY() - maxDetectionDistance + parent.shape.getSize().getHeight()/2), 
-				maxDetectionDistance*2, 
-				maxDetectionDistance*2);
-	
-		//Min distance
-		g.setColor(Color.pink);
-		g.drawOval((int)(parent.shape.getPosition().getX() - (minDistance + parent.shape.getRadius()) + parent.shape.getSize().getWidth()/2), 
-				(int)(parent.shape.getPosition().getY() - (minDistance + parent.shape.getRadius()) + parent.shape.getSize().getHeight()/2), 
-				(int)(minDistance + parent.shape.getRadius())*2, 
-				(int)(minDistance + parent.shape.getRadius())*2);
+		if(visible)
+		{
+			//Viewing range
+			g.setColor(Color.cyan);
+			g.drawOval((int)(parent.shape.getPosition().getX() - maxDetectionDistance + parent.shape.getSize().getWidth()/2), 
+					(int)(parent.shape.getPosition().getY() - maxDetectionDistance + parent.shape.getSize().getHeight()/2), 
+					maxDetectionDistance*2, 
+					maxDetectionDistance*2);
+		
+			//Min distance
+			g.setColor(Color.pink);
+			g.drawOval((int)(parent.shape.getPosition().getX() - (minDistance + parent.shape.getRadius()) + parent.shape.getSize().getWidth()/2), 
+					(int)(parent.shape.getPosition().getY() - (minDistance + parent.shape.getRadius()) + parent.shape.getSize().getHeight()/2), 
+					(int)(minDistance + parent.shape.getRadius())*2, 
+					(int)(minDistance + parent.shape.getRadius())*2);
+		}
 	}
 
 	

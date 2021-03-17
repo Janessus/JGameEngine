@@ -14,14 +14,22 @@ public class Player extends GameObject
 		
 		addComponent(new HealthAttributeComponent(this, 100));
 		addComponent(new StaminaAttributeComponent(this, 100));
+		addComponent(new ArmorAttributeComponent(this, 100));
 		addComponent(new CollectorComponent(this));
-		addComponent(new CombatComponent(this));
 		
-		((CombatComponent)getFirstComponent(CombatComponent.class)).equipWeapon(new Sword(50, 5, 100, 100));
+		CombatComponent combat = new CombatComponent(this);
+		addComponent(combat);
+		combat.equipArmor(new IronArmor(100, 0.5));
+		combat.getArmor().setOwnerComponent(combat);
+		
+		combat.equipWeapon(new Sword(50, 2, 50, 100));
+		combat.getWeapon().setOwnerComponent(combat);
 		
 		getFirstComponent(PlayerMouseController.class).setVisible(true);
 		getFirstComponent(HealthAttributeComponent.class).setVisible(true);
 		getFirstComponent(StaminaAttributeComponent.class).setVisible(true);
 		getFirstComponent(CombatComponent.class).setVisible(true);
+		getFirstComponent(ArmorAttributeComponent.class).setVisible(true);
+
 	}
 }

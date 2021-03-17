@@ -6,5 +6,4 @@ public class IronArmor extends Armor
 		super(reductionFactor);
 		this.durability = durability;
 	}
-
 }
