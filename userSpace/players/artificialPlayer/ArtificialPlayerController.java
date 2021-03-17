@@ -77,7 +77,7 @@ public class ArtificialPlayerController extends GameObjectComponent
 		target = findClosestTarget();
 		
 		try {
-			elapsedTime = 1_000_000_000 / parent.getGame().getFps(); //in nanoseconds
+			elapsedTime = 1_000_000_000 / parent.getGame().getFPS(); //in nanoseconds
 		} 
 		catch (Exception e) 
 		{

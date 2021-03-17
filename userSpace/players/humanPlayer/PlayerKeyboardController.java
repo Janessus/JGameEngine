@@ -108,7 +108,7 @@ public class PlayerKeyboardController extends GameObjectComponent
 		Direction targetDirection;
 		
 		try {
-			elapsedTime = 1_000_000_000 / player.getGame().getFps();
+			elapsedTime = 1_000_000_000 / player.getGame().getFPS();
 		} 
 		catch (Exception e) 
 		{

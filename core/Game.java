@@ -22,7 +22,7 @@ import userSpace.players.humanPlayer.Player;
 public class Game extends JPanel
 {
 	private boolean run = false;
-	private int fps;
+	private static int fps;
 
 	private JFrame window;
 	private Camera camera;
@@ -80,7 +80,10 @@ public class Game extends JPanel
 			getGameObjects().add(new Adrenalin	(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 50));
 		}
 		
-		getGameObjects().add(new ArtificialPlayer(this));
+		getGameObjects().add(new ArtificialPlayer(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height)))));
+		getGameObjects().add(new ArtificialPlayer(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height)))));
+		getGameObjects().add(new ArtificialPlayer(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height)))));
+		getGameObjects().add(new ArtificialPlayer(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height)))));
 		getGameObjects().add(player);
 		
 		//Set all colliders to visible
@@ -127,12 +130,6 @@ public class Game extends JPanel
 		});
 	}
 
-	
-	public int getFPS()
-	{
-		return getFps();
-	}
-	
 	
 	private void processCollisionsFor(GameObject g)
 	{
@@ -187,7 +184,7 @@ public class Game extends JPanel
 		
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("monospace", Font.PLAIN, 12));
-		g.drawString(getFps() + "fps", 0, 15);
+		g.drawString(getFPS() + "fps", 0, 15);
 		
 		if(getMousePos() == null)
 			g.drawString("Mouse=OUT_OF_FOCUS", 0, 30);
@@ -214,7 +211,7 @@ public class Game extends JPanel
 	}
 
 
-	public int getFps()
+	public static int getFPS()
 	{
 		return fps;
 	}

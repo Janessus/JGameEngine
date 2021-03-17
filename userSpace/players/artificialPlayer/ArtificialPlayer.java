@@ -1,4 +1,6 @@
 package userSpace.players.artificialPlayer;
+import java.awt.geom.Point2D;
+
 import core.Game;
 import gameObject.GameObject;
 import gameObject.components.armor.ArmorAttributeComponent;
@@ -11,11 +13,22 @@ import userSpace.items.Sword;
 
 public class ArtificialPlayer extends GameObject
 {
+	public ArtificialPlayer(Game game, Point2D position)
+	{
+		super(game, new ArtificialPlayerShape());
+		setup(game);
+		getShape().setPosition(position);
+	}
 
 	public ArtificialPlayer(Game game)
 	{
 		super(game, new ArtificialPlayerShape());
+		setup(game);
 		
+	}
+	
+	private void setup(Game game)
+	{
 		addComponent(new ArtificialPlayerController(this));
 		
 		addComponent(new Collider(this));
@@ -30,7 +43,7 @@ public class ArtificialPlayer extends GameObject
 		
 		CombatComponent combat = (CombatComponent)getFirstComponent(CombatComponent.class);
 		
-		combat.equipWeapon(new Sword(20, 0.5, 50, 100));
+		combat.equipWeapon(new Sword(90, 0.5, 50, 100));
 		combat.getWeapon().setOwner(combat);
 		
 		combat.equipArmor(new IronArmor(100, 0.5));

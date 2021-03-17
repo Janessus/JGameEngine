@@ -26,20 +26,6 @@ public class CombatComponent extends GameObjectComponent
 		visible = false;
 	}
 	
-	/*
-	private boolean canAttack(GameObject o)
-	{
-	-----> if(o.shape.getCircleEdgeDistance(this.parent.shape) <= maxAttackRange) <-------
-		{
-			CombatComponent enemy = (CombatComponent) o.getFirstComponent(CombatComponent.class);
-			if(enemy != null)
-				return true;
-		}
-		return false;
-	}
-	
-	*/
-	
 
 	public void attack(Direction direction)
 	{
@@ -110,6 +96,7 @@ public class CombatComponent extends GameObjectComponent
 					, (int)(equippedWeapon.getRange())*2
 					, (int)(equippedWeapon.getRange())*2);
 		}
+		//TODO draw attack animation
 	}
 
 	
