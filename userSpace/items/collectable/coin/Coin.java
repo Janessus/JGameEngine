@@ -3,9 +3,9 @@ import java.awt.Point;
 
 import core.Game;
 import gameObject.GameObject;
-import gameObject.components.CollectableComponent;
-import gameObject.components.Collider;
-import templates.Collectables;
+import gameObject.components.collectable.CollectableComponent;
+import gameObject.components.collectable.Collectables;
+import gameObject.components.collider.Collider;
 
 @SuppressWarnings("serial")
 public class Coin extends GameObject

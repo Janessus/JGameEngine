@@ -1,14 +1,14 @@
-package userSpace.controllers;
+package userSpace.players.artificialPlayer;
 import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
+import core.Direction;
 import gameObject.GameObject;
-import gameObject.components.CombatComponent;
 import gameObject.components.GameObjectComponent;
-import templates.Direction;
-import userSpace.players.Player;
+import gameObject.components.combat.CombatComponent;
+import userSpace.players.humanPlayer.Player;
 
 public class ArtificialPlayerController extends GameObjectComponent
 {

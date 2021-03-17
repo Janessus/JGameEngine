@@ -9,15 +9,15 @@ import java.util.Random;
 import javax.swing.*;
 
 import gameObject.GameObject;
-import gameObject.components.Collider;
 import gameObject.components.GameObjectComponent;
+import gameObject.components.collider.Collider;
 import userSpace.Camera;
 import userSpace.items.collectable.adrenalin.Adrenalin;
 import userSpace.items.collectable.coin.Coin;
 import userSpace.items.collectable.mediPack.MediPack;
 import userSpace.items.solid.walls.BasicWall;
-import userSpace.players.ArtificialPlayer;
-import userSpace.players.Player;
+import userSpace.players.artificialPlayer.ArtificialPlayer;
+import userSpace.players.humanPlayer.Player;
 
 public class Game extends JPanel
 {

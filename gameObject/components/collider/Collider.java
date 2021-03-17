@@ -1,10 +1,12 @@
-package gameObject.components;
+package gameObject.components.collider;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 import gameObject.GameObject;
+import gameObject.components.GameObjectComponent;
+import gameObject.components.ICollisionHandler;
 
 public class Collider extends GameObjectComponent
 {

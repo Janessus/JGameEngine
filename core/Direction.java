@@ -1,4 +1,4 @@
-package templates;
+package core;
 import java.awt.geom.Point2D;
 
 public class Direction

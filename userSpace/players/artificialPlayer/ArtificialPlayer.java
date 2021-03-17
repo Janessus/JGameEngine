@@ -1,12 +1,11 @@
-package userSpace.players;
+package userSpace.players.artificialPlayer;
 import core.Game;
 import gameObject.GameObject;
-import gameObject.components.CollectorComponent;
-import gameObject.components.Collider;
-import gameObject.components.CombatComponent;
-import gameObject.components.HealthAttributeComponent;
-import templates.ArmorAttributeComponent;
-import userSpace.controllers.ArtificialPlayerController;
+import gameObject.components.armor.ArmorAttributeComponent;
+import gameObject.components.attributeComponent.HealthAttributeComponent;
+import gameObject.components.collectable.CollectorComponent;
+import gameObject.components.collider.Collider;
+import gameObject.components.combat.CombatComponent;
 import userSpace.items.IronArmor;
 import userSpace.items.Sword;
 

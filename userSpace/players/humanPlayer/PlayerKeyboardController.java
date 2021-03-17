@@ -1,4 +1,4 @@
-package userSpace.controllers;
+package userSpace.players.humanPlayer;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -6,10 +6,10 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
+import core.Direction;
 import core.Movements;
 import gameObject.GameObject;
 import gameObject.components.GameObjectComponent;
-import templates.Direction;
 
 public class PlayerKeyboardController extends GameObjectComponent
 {

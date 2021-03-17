@@ -1,5 +1,6 @@
 package templates;
-import gameObject.components.CombatComponent;
+import gameObject.components.armor.ArmorAttributeComponent;
+import gameObject.components.combat.CombatComponent;
 
 public abstract class Armor
 {

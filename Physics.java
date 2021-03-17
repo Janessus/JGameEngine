@@ -2,10 +2,10 @@ import java.awt.Graphics;
 import java.util.Date;
 import java.util.Vector;
 
+import core.Direction;
 import core.Game;
 import gameObject.GameObject;
 import gameObject.components.GameObjectComponent;
-import templates.Direction;
 
 public class Physics extends GameObjectComponent
 {

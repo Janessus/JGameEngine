@@ -1,9 +1,12 @@
-package gameObject.components;
+package gameObject.components.collectable;
 import java.awt.Graphics;
 import java.util.List;
 
 import gameObject.GameObject;
-import templates.Collectables;
+import gameObject.components.GameObjectComponent;
+import gameObject.components.ICollisionHandler;
+import gameObject.components.attributeComponent.HealthAttributeComponent;
+import gameObject.components.attributeComponent.StaminaAttributeComponent;
 
 public class CollectorComponent extends GameObjectComponent implements ICollisionHandler
 {

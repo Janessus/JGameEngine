@@ -1,9 +1,9 @@
-package templates;
+package gameObject.components.armor;
 import java.awt.Color;
 import java.awt.Graphics;
 
 import gameObject.GameObject;
-import gameObject.components.AttributeComponent;
+import gameObject.components.attributeComponent.AttributeComponent;
 
 public class ArmorAttributeComponent extends AttributeComponent
 {

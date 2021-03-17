@@ -1,9 +1,10 @@
-package gameObject.components;
+package gameObject.components.collectable;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
 import gameObject.GameObject;
-import templates.Collectables;
+import gameObject.components.GameObjectComponent;
+import gameObject.components.ICollisionHandler;
 import templates.GameShape;
 
 @SuppressWarnings("serial")

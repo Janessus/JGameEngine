@@ -2,7 +2,8 @@ package templates;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import gameObject.components.CombatComponent;
+import core.Direction;
+import gameObject.components.combat.CombatComponent;
 
 public abstract class Weapon
 {

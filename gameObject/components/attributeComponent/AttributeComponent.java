@@ -1,5 +1,6 @@
-package gameObject.components;
+package gameObject.components.attributeComponent;
 import gameObject.GameObject;
+import gameObject.components.GameObjectComponent;
 
 public abstract class AttributeComponent extends GameObjectComponent
 {

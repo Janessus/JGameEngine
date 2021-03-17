@@ -1,10 +1,12 @@
-package gameObject.components;
+package gameObject.components.combat;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import core.Direction;
 import gameObject.GameObject;
+import gameObject.components.GameObjectComponent;
+import gameObject.components.attributeComponent.HealthAttributeComponent;
 import templates.Armor;
-import templates.Direction;
 import templates.Weapon;
 
 public class CombatComponent extends GameObjectComponent

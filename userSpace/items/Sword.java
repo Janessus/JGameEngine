@@ -2,9 +2,9 @@ package userSpace.items;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import core.Direction;
 import gameObject.GameObject;
-import gameObject.components.CombatComponent;
-import templates.Direction;
+import gameObject.components.combat.CombatComponent;
 import templates.Weapon;
 
 public class Sword extends Weapon

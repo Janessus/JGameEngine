@@ -1,4 +1,4 @@
-package templates;
+package gameObject.components.collectable;
 
 public enum Collectables
 {

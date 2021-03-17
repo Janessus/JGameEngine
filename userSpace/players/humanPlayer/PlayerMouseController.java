@@ -1,4 +1,4 @@
-package userSpace.controllers;
+package userSpace.players.humanPlayer;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -6,10 +6,10 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
+import core.Direction;
 import gameObject.GameObject;
-import gameObject.components.CombatComponent;
 import gameObject.components.GameObjectComponent;
-import templates.Direction;
+import gameObject.components.combat.CombatComponent;
 
 public class PlayerMouseController extends GameObjectComponent
 {

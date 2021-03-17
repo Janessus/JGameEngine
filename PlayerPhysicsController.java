@@ -4,9 +4,9 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
+import core.Direction;
 import gameObject.components.GameObjectComponent;
-import templates.Direction;
-import userSpace.players.Player;
+import userSpace.players.humanPlayer.Player;
 
 public class PlayerPhysicsController extends GameObjectComponent
 {
