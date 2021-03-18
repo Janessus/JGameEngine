@@ -12,6 +12,7 @@ import gameObject.components.GameObjectComponent;
 import gameObject.components.collider.Collider;
 import userSpace.Camera;
 import userSpace.items.collectable.adrenalin.Adrenalin;
+import userSpace.items.collectable.armorPlate.ArmorPlate;
 import userSpace.items.collectable.coin.Coin;
 import userSpace.items.collectable.mediPack.MediPack;
 import userSpace.items.solid.walls.BasicWall;
@@ -78,6 +79,7 @@ public class Game extends JPanel
 			getGameObjects().add(new Coin		(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 10));
 			getGameObjects().add(new MediPack	(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 50));
 			getGameObjects().add(new Adrenalin	(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 50));
+			getGameObjects().add(new ArmorPlate (this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height))), 50));
 		}
 		
 		getGameObjects().add(new ArtificialPlayer(this, new Point((int)(r.nextDouble() * getRootPane().getSize().width),((int) (r.nextDouble() * getRootPane().getSize().height)))));

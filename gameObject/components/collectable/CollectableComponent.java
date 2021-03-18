@@ -16,7 +16,7 @@ public class CollectableComponent extends GameObjectComponent implements ICollis
 	GameObject parentObject;
 	
 	
-	CollectableComponent(GameObject parent, GameShape shape, Collectables type)
+	CollectableComponent(GameObject parent, Collectables type)
 	{
 		this.type = type;
 		this.parentObject = parent;

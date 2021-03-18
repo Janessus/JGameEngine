@@ -5,5 +5,6 @@ public enum Collectables
 	GOLD,
 	HEALTH,
 	STAMINA,
-	XP;
+	XP,
+	ARMOR;
 }

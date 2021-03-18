@@ -3,7 +3,7 @@ import java.awt.geom.Point2D;
 
 import core.Game;
 import gameObject.GameObject;
-import gameObject.components.armor.ArmorAttributeComponent;
+import gameObject.components.attributeComponent.ArmorAttributeComponent;
 import gameObject.components.attributeComponent.HealthAttributeComponent;
 import gameObject.components.collectable.CollectorComponent;
 import gameObject.components.collider.Collider;
@@ -43,7 +43,7 @@ public class ArtificialPlayer extends GameObject
 		
 		CombatComponent combat = (CombatComponent)getFirstComponent(CombatComponent.class);
 		
-		combat.equipWeapon(new Sword(90, 0.5, 50, 100));
+		combat.equipWeapon(new Sword(40, 0.5, 50, 100));
 		combat.getWeapon().setOwner(combat);
 		
 		combat.equipArmor(new IronArmor(100, 0.5));

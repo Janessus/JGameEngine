@@ -5,8 +5,10 @@ import java.util.List;
 import gameObject.GameObject;
 import gameObject.components.GameObjectComponent;
 import gameObject.components.ICollisionHandler;
+import gameObject.components.attributeComponent.ArmorAttributeComponent;
 import gameObject.components.attributeComponent.HealthAttributeComponent;
 import gameObject.components.attributeComponent.StaminaAttributeComponent;
+import templates.Armor;
 
 public class CollectorComponent extends GameObjectComponent implements ICollisionHandler
 {
@@ -32,6 +34,12 @@ public class CollectorComponent extends GameObjectComponent implements ICollisio
 			
 		case XP:
 			return true;
+			
+		case ARMOR:
+			ArmorAttributeComponent armor = (ArmorAttributeComponent) parent.getFirstComponent(ArmorAttributeComponent.class);
+			if(armor == null)
+				return false;
+			return armor.add(value);
 			
 		case STAMINA:
 			StaminaAttributeComponent stamina = (StaminaAttributeComponent) parent.getFirstComponent(StaminaAttributeComponent.class);

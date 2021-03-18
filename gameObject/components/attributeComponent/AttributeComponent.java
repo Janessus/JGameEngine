@@ -7,8 +7,10 @@ public abstract class AttributeComponent extends GameObjectComponent
 	private GameObject parent;
 	private int maxValue;
 	private int value;
+	
 	protected abstract boolean alreadyFull();
 	protected abstract boolean belowZero();
+	
 	
 	public AttributeComponent(GameObject parent, int maxValue)
 	{

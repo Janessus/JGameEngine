@@ -7,6 +7,7 @@ public abstract class GameShape
 {
 	private Point2D position;	//absolute
 	private Dimension size;
+	
 	public abstract void paint(Graphics g);
 	
 	public GameShape(int x, int y, int w, int h)

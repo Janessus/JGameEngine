@@ -1,14 +1,12 @@
-package gameObject.components.armor;
+package gameObject.components.attributeComponent;
 import java.awt.Color;
 import java.awt.Graphics;
 
 import gameObject.GameObject;
-import gameObject.components.attributeComponent.AttributeComponent;
 
 public class ArmorAttributeComponent extends AttributeComponent
 {
 	private boolean visible;
-	private int value;
 	
 	
 	public ArmorAttributeComponent(GameObject parent, int maxArmor)
@@ -19,17 +17,8 @@ public class ArmorAttributeComponent extends AttributeComponent
 	}
 	
 	
-	public double getReductionFactor()
-	{
-		return 1;
-	}
-
-	
 	@Override
-	public void updateComponent()
-	{
-
-	}
+	public void updateComponent(){}
 
 	
 	@Override
@@ -62,18 +51,6 @@ public class ArmorAttributeComponent extends AttributeComponent
 	@Override
 	protected boolean belowZero()
 	{
-		return true;
-	}
-
-
-	public int getValue()
-	{
-		return value;
-	}
-
-
-	public void setValue(int value)
-	{
-		this.value = value;
+		return false;
 	}
 }

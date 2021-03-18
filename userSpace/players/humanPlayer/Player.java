@@ -1,7 +1,7 @@
 package userSpace.players.humanPlayer;
 import core.Game;
 import gameObject.GameObject;
-import gameObject.components.armor.ArmorAttributeComponent;
+import gameObject.components.attributeComponent.ArmorAttributeComponent;
 import gameObject.components.attributeComponent.HealthAttributeComponent;
 import gameObject.components.attributeComponent.StaminaAttributeComponent;
 import gameObject.components.collectable.CollectorComponent;
@@ -29,7 +29,7 @@ public class Player extends GameObject
 		
 		CombatComponent combat = new CombatComponent(this);
 		addComponent(combat);
-		combat.equipArmor(new IronArmor(100, 0.5));
+		combat.equipArmor(new IronArmor(100, 0.8));
 		combat.getArmor().setOwnerComponent(combat);
 		
 		combat.equipWeapon(new Sword(50, 2, 50, 100));
