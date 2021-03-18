@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import gameObject.components.GameObjectComponent;
 
+//TODO
 public class AnimatorComponent extends GameObjectComponent
 {
 	@Override
