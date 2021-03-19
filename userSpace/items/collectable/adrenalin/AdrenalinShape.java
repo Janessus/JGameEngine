@@ -16,7 +16,7 @@ public class AdrenalinShape extends GameShape
 	{
 		super(pos.x, pos.y, 60, 60);
 		try {
-			texture = ImageIO.read(new File("./src/resources/adrenalin.png"));
+			texture = ImageIO.read(new File("./src/resources/adrenalin.png").getAbsoluteFile());
 		} catch (IOException e) {
 			e.printStackTrace(); //TODO
 //			texture = textureNotFound();
