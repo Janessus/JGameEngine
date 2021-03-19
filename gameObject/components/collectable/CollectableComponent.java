@@ -1,4 +1,5 @@
 package gameObject.components.collectable;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
@@ -55,7 +56,7 @@ public class CollectableComponent extends GameObjectComponent implements ICollis
 	}
 
 	
-	public void drawComponent(Graphics2D g) {}
+	public void drawComponent(Graphics g) {}
 
 
 	@Override

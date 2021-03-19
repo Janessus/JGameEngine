@@ -34,7 +34,7 @@ public class HealthAttributeComponent extends AttributeComponent
 
 	
 	@Override
-	public void drawComponent(Graphics2D g)
+	public void drawComponent(Graphics g)
 	{
 		if(isVisible())
 		{

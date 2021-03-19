@@ -73,7 +73,7 @@ public class CollectorComponent extends GameObjectComponent implements ICollisio
 	}
 
 	@Override
-	public void drawComponent(Graphics2D g) {}
+	public void drawComponent(Graphics g) {}
 
 	@Override
 	public void setVisible(boolean visible) {}

@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -92,7 +93,7 @@ public class PlayerPhysicsController extends GameObjectComponent
 	}
 
 	@Override
-	public void drawComponent(Graphics2D g)
+	public void drawComponent(Graphics g)
 	{
 		// TODO Auto-generated method stub
 		

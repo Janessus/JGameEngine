@@ -47,7 +47,7 @@ public class Game extends JPanel
 	{
 		run = true;
 		long prev = System.nanoTime();
-		
+
 		while(run)
 		{
 			long currentTime = System.nanoTime();
@@ -179,6 +179,7 @@ public class Game extends JPanel
 	}
 	
 	
+	@Override
 	public void paint(Graphics g)
 	{
 		g.clearRect(0, 0, getWidth() , getHeight());

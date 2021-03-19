@@ -23,7 +23,7 @@ public class AdrenalinShape extends GameShape
 		} catch (IOException e) {
 			System.out.println("Width " + super.getSize().getWidth());
 			texture = new BufferedImage(super.getSize().width, super.getSize().height, BufferedImage.TYPE_INT_ARGB);
-			Graphics2D g = texture.createGraphics();
+			Graphics g = texture.createGraphics();
 			g.setColor(Color.BLACK);
 			g.setFont(new Font("monospace", Font.BOLD, 8));
 			drawMultiLineString(g, "   TEXTURE\nNOT FOUND", 6, 15);

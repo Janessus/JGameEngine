@@ -1,5 +1,6 @@
 package templates;
 
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.List;
@@ -45,7 +46,7 @@ public abstract class Animation
 	}
 	
 	
-	public void paint(Graphics2D g)
+	public void paint(Graphics g)
 	{		
 		update();
 		animationFrames.get(frameCounter).paint(this, g);

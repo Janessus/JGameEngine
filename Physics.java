@@ -1,5 +1,5 @@
 import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.util.Date;
 import java.util.Vector;
 
@@ -77,7 +77,7 @@ public class Physics extends GameObjectComponent
 	}
 
 	@Override
-	public void drawComponent(Graphics2D g)
+	public void drawComponent(Graphics g)
 	{
 		// TODO Auto-generated method stub
 		

@@ -1,4 +1,5 @@
 package gameObject.components;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import gameObject.GameObject;
@@ -9,7 +10,7 @@ public abstract class GameObjectComponent
 	private boolean visible;
 	
 	public abstract void updateComponent();
-	public abstract void drawComponent(Graphics2D g);
+	public abstract void drawComponent(Graphics g);
 	
 	public GameObjectComponent(GameObject parent)
 	{

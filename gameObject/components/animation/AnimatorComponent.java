@@ -26,7 +26,7 @@ public class AnimatorComponent extends GameObjectComponent
 	}
 
 	@Override
-	public void drawComponent(Graphics2D g)
+	public void drawComponent(Graphics g)
 	{
 		for(int i = 0; i < animations.size(); i++)
 		{
