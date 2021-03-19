@@ -61,7 +61,7 @@ public class Camera extends JPanel
 	}
 	
 	
-	public void paint(Graphics g)
+	public void paint(Graphics2D g)
 	{
 		g.setColor(Color.BLACK);
 		renderCamera();

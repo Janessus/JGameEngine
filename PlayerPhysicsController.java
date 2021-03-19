@@ -1,26 +1,25 @@
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
 import core.Direction;
+import gameObject.GameObject;
 import gameObject.components.GameObjectComponent;
-import userSpace.players.humanPlayer.Player;
 
 public class PlayerPhysicsController extends GameObjectComponent
 {
 	
 	private JFrame window;
-	private Player player;
 	private Physics p;
 	public final double acceleration = 0.001;
 	
 	
-	public PlayerPhysicsController(Player parent, JFrame window, Physics p)
+	public PlayerPhysicsController(GameObject parent, JFrame window, Physics p)
 	{
+		super(parent);
 		this.p = p;
-		this.player = parent;
 		this.window = window;
 		setupKeyListeners();
 	}
@@ -40,16 +39,16 @@ public class PlayerPhysicsController extends GameObjectComponent
 
 				switch (keyCode) {
 				case KeyEvent.VK_W:
-					//player.setMoving(Movements.UP, false);
+					//getParent().setMoving(Movements.UP, false);
 					break;
 				case KeyEvent.VK_A:
-					//player.setMoving(Movements.LEFT, false);
+					//getParent().setMoving(Movements.LEFT, false);
 					break;
 				case KeyEvent.VK_S:
-					//player.setMoving(Movements.DOWN, false);
+					//getParent().setMoving(Movements.DOWN, false);
 					break;
 				case KeyEvent.VK_D:
-					//player.setMoving(Movements.RIGHT, false);
+					//getParent().setMoving(Movements.RIGHT, false);
 					break;
 
 				default:
@@ -64,19 +63,19 @@ public class PlayerPhysicsController extends GameObjectComponent
 				switch (keyCode) 
 				{
 				case KeyEvent.VK_W:
-					//player.setMoving(Movements.UP, true);
+					//getParent().setMoving(Movements.UP, true);
 					p.accelerate(acceleration, new Direction(0, -1));
 					break;
 				case KeyEvent.VK_A:
-					//player.setMoving(Movements.LEFT, true);
+					//getParent().setMoving(Movements.LEFT, true);
 					p.accelerate(acceleration, new Direction(-1, 0));
 					break;
 				case KeyEvent.VK_S:
-					//player.setMoving(Movements.DOWN, true);
+					//getParent().setMoving(Movements.DOWN, true);
 					p.accelerate(acceleration, new Direction(0, 1));
 					break;
 				case KeyEvent.VK_D:
-					//player.setMoving(Movements.RIGHT, true);
+					//getParent().setMoving(Movements.RIGHT, true);
 					p.accelerate(acceleration, new Direction(1, 0));
 					break;
 				
@@ -93,7 +92,7 @@ public class PlayerPhysicsController extends GameObjectComponent
 	}
 
 	@Override
-	public void drawComponent(Graphics g)
+	public void drawComponent(Graphics2D g)
 	{
 		// TODO Auto-generated method stub
 		

@@ -1,17 +1,21 @@
 package templates;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.util.List;
 import core.Game;
 
 
 public abstract class Animation
 {
+	private Point position;
+	private double rotation;
 	private int duration; //in ms
 	private long elapsedTime; //in ns
 	private int frameCounter;
 	private int frames;
 	private long maxFrameTime;
+	
 	protected List<IAnimationFrame> animationFrames;
 	
 	public abstract void setupFrames();
@@ -28,6 +32,7 @@ public abstract class Animation
 	}
 	
 	
+	
 	private void update()
 	{
 		elapsedTime += 1_000_000_000 / Game.getFPS();
@@ -35,13 +40,38 @@ public abstract class Animation
 		if(elapsedTime >= maxFrameTime)
 		{
 			frameCounter++;
+			elapsedTime = 0;
 		}
 	}
 	
 	
-	public void paint(Graphics g)
+	public void paint(Graphics2D g)
 	{		
 		update();
-		animationFrames.get(frameCounter).paint(g);
+		animationFrames.get(frameCounter).paint(this, g);
+	}
+
+
+	public Point getPosition()
+	{
+		return position;
+	}
+
+
+	public void setPosition(Point position)
+	{
+		this.position = position;
+	}
+
+
+	public double getRotation()
+	{
+		return rotation;
+	}
+
+
+	public void setRotation(double rotation)
+	{
+		this.rotation = rotation;
 	}
 }

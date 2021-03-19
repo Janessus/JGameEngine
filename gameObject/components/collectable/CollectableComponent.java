@@ -1,11 +1,10 @@
 package gameObject.components.collectable;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import gameObject.GameObject;
 import gameObject.components.GameObjectComponent;
 import gameObject.components.ICollisionHandler;
-import templates.GameShape;
 
 public class CollectableComponent extends GameObjectComponent implements ICollisionHandler
 {	
@@ -13,19 +12,16 @@ public class CollectableComponent extends GameObjectComponent implements ICollis
 	private int value = 0;
 	
 	
-	GameObject parentObject;
-	
-	
 	CollectableComponent(GameObject parent, Collectables type)
 	{
+		super(parent);
 		this.type = type;
-		this.parentObject = parent;
 	}
 	
 	
 	public CollectableComponent(GameObject parent, Collectables type, int value)
 	{
-		this.parentObject = parent;
+		super(parent);
 		this.type = type;
 		this.value = value;
 	}
@@ -43,7 +39,7 @@ public class CollectableComponent extends GameObjectComponent implements ICollis
 			{
 				if(((CollectorComponent)components.get(i)).collect(type, value))
 				{
-					parentObject.destroy();
+					getParent().destroy();
 					return false;
 				}
 			}
@@ -59,7 +55,7 @@ public class CollectableComponent extends GameObjectComponent implements ICollis
 	}
 
 	
-	public void drawComponent(Graphics g) {}
+	public void drawComponent(Graphics2D g) {}
 
 
 	@Override

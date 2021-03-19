@@ -1,10 +1,12 @@
 package userSpace.players.humanPlayer;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 import core.Direction;
+import core.Game;
 import core.Movements;
 import gameObject.GameObject;
 import gameObject.components.GameObjectComponent;
@@ -14,11 +16,11 @@ public class PlayerKeyboardController extends GameObjectComponent
 	private boolean up, down, left, right; //movement
 	private double speed = 0.5;
 	private JFrame window;
-	private GameObject player;
+
 	
 	public PlayerKeyboardController(GameObject parent)
 	{
-		this.player = parent;
+		super(parent);
 		this.window = parent.getGame().getWindow();
 		up = false;
 		down = false;
@@ -108,7 +110,7 @@ public class PlayerKeyboardController extends GameObjectComponent
 		Direction targetDirection;
 		
 		try {
-			elapsedTime = 1_000_000_000 / player.getGame().getFPS();
+			elapsedTime = 1_000_000_000 / Game.getFPS();
 		} 
 		catch (Exception e) 
 		{
@@ -132,18 +134,12 @@ public class PlayerKeyboardController extends GameObjectComponent
 		if(targetDirection != null)
 		{	
 			double distanceFactor = (speed * elapsedTime)/1_000_000;
-			player.getShape().translate(distanceFactor * targetDirection.getX(), distanceFactor * targetDirection.getY());
+			getParent().getShape().translate(distanceFactor * targetDirection.getX(), distanceFactor * targetDirection.getY());
 		}
 	}
 
 	@Override
-	public void drawComponent(Graphics g)
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void setVisible(boolean visible)
+	public void drawComponent(Graphics2D g)
 	{
 		// TODO Auto-generated method stub
 	}

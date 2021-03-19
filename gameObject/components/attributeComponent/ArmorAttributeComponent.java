@@ -1,6 +1,6 @@
 package gameObject.components.attributeComponent;
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import gameObject.GameObject;
 
@@ -22,7 +22,7 @@ public class ArmorAttributeComponent extends AttributeComponent
 
 	
 	@Override
-	public void drawComponent(Graphics g)
+	public void drawComponent(Graphics2D g)
 	{
 		if(visible)
 		{

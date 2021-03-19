@@ -1,6 +1,5 @@
 package gameObject;
-import java.awt.Graphics;
-
+import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,13 +21,13 @@ public abstract class GameObject
 	}
 
 
-	public void paint(Graphics g)
+	public void paint(Graphics2D g)
 	{
 		paintObject(g);
 	}
 	
 	
-	public void paintObject(Graphics g)
+	public void paintObject(Graphics2D g)
 	{
 		shape.paint(g);
 		

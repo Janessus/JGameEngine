@@ -1,5 +1,6 @@
 package gameObject.components.collectable;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.List;
 
 import gameObject.GameObject;
@@ -11,13 +12,12 @@ import gameObject.components.attributeComponent.StaminaAttributeComponent;
 import templates.Armor;
 
 public class CollectorComponent extends GameObjectComponent implements ICollisionHandler
-{
-	private GameObject parent;
-	
+{	
 	public CollectorComponent(GameObject parent)
 	{
-		this.parent = parent;
+		super(parent);
 	}
+
 	
 	//returns true if the item was collectet
 	public boolean collect(Collectables type, int value)
@@ -27,7 +27,7 @@ public class CollectorComponent extends GameObjectComponent implements ICollisio
 			return true;
 			
 		case HEALTH:
-			HealthAttributeComponent health = (HealthAttributeComponent) parent.getFirstComponent(HealthAttributeComponent.class);
+			HealthAttributeComponent health = (HealthAttributeComponent) getParent().getFirstComponent(HealthAttributeComponent.class);
 			if(health == null)
 				return false;
 			return health.add(value);
@@ -36,13 +36,13 @@ public class CollectorComponent extends GameObjectComponent implements ICollisio
 			return true;
 			
 		case ARMOR:
-			ArmorAttributeComponent armor = (ArmorAttributeComponent) parent.getFirstComponent(ArmorAttributeComponent.class);
+			ArmorAttributeComponent armor = (ArmorAttributeComponent) getParent().getFirstComponent(ArmorAttributeComponent.class);
 			if(armor == null)
 				return false;
 			return armor.add(value);
 			
 		case STAMINA:
-			StaminaAttributeComponent stamina = (StaminaAttributeComponent) parent.getFirstComponent(StaminaAttributeComponent.class);
+			StaminaAttributeComponent stamina = (StaminaAttributeComponent) getParent().getFirstComponent(StaminaAttributeComponent.class);
 			if(stamina == null)
 				return false;
 			return stamina.add(value);
@@ -64,7 +64,7 @@ public class CollectorComponent extends GameObjectComponent implements ICollisio
 				if(list.get(i) == null)
 					returnVal = true;
 				else
-					returnVal |= ((CollectableComponent)list.get(i)).handleCollisionWith(parent);
+					returnVal |= ((CollectableComponent)list.get(i)).handleCollisionWith(getParent());
 			}
 			return returnVal;
 		}
@@ -73,12 +73,8 @@ public class CollectorComponent extends GameObjectComponent implements ICollisio
 	}
 
 	@Override
-	public void drawComponent(Graphics g) {}
+	public void drawComponent(Graphics2D g) {}
 
 	@Override
-	public void setVisible(boolean visible)
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	public void setVisible(boolean visible) {}
 }

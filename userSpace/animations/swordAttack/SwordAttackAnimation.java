@@ -1,17 +1,16 @@
 package userSpace.animations.swordAttack;
 
-import java.awt.Graphics;
-import java.util.List;
-
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
 import templates.Animation;
 import templates.IAnimationFrame;
 
 public class SwordAttackAnimation extends Animation
 {
-	public SwordAttackAnimation(int milliDuration, List<IAnimationFrame> animationFrames)
+	public SwordAttackAnimation(int milliDuration)
 	{
-		super(milliDuration, animationFrames);
-		// TODO Auto-generated constructor stub
+		super(milliDuration, new ArrayList<IAnimationFrame>());
 	}
 	
 	
@@ -20,9 +19,10 @@ public class SwordAttackAnimation extends Animation
 	{
 		animationFrames.add(new IAnimationFrame() {
 			@Override
-			public void paint(Graphics g)
+			public void paint(Animation animation, Graphics2D g)
 			{
-//				g.fillArc(duration, duration, duration, duration, duration, duration);
+				g.setColor(Color.BLACK);
+				g.fillArc(getPosition().x, getPosition().y, 50, 20, 0, 180);
 			}
 		});
 	}

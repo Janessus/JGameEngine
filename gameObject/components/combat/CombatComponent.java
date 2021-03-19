@@ -1,6 +1,7 @@
 package gameObject.components.combat;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import core.Direction;
 import gameObject.GameObject;
@@ -11,19 +12,16 @@ import templates.Weapon;
 
 public class CombatComponent extends GameObjectComponent
 {
-	private GameObject parent;
 	private Direction attackDirection;
 	private boolean attacking;
 	private Weapon equippedWeapon;
 	private Armor equippedArmor;
-	private boolean visible;
 	
 	
 	public CombatComponent(GameObject parent)
 	{
-		this.parent = parent;
+		super(parent);
 		attacking = false;
-		visible = false;
 	}
 	
 
@@ -41,7 +39,6 @@ public class CombatComponent extends GameObjectComponent
 	
 	public void handleAttack(CombatComponent combat)
 	{
-		System.out.println(this.parent + " getting attacked by " + combat.parent);
 		double damage = 0;
 
 		if(equippedArmor != null)
@@ -51,20 +48,20 @@ public class CombatComponent extends GameObjectComponent
 		}
 		else
 			damage = combat.getWeapon().getDamage();
-		((HealthAttributeComponent)parent.getFirstComponent(HealthAttributeComponent.class)).add((int)-damage);
+		((HealthAttributeComponent)getParent().getFirstComponent(HealthAttributeComponent.class)).add((int)-damage);
 	}
 	
 	
 	public void handleAttack(Weapon weapon)
 	{
-		System.out.println(this.parent + " getting attacked by " + weapon);
+		System.out.println(this.getParent() + " getting attacked by " + weapon);
 		double damage = 0;
 
 		if(equippedArmor != null)
 			damage = weapon.getDamage() * equippedArmor.getReductionFactor();
 		else
 			damage = weapon.getDamage();
-		((HealthAttributeComponent)parent.getFirstComponent(HealthAttributeComponent.class)).add((int)-damage);
+		((HealthAttributeComponent)getParent().getFirstComponent(HealthAttributeComponent.class)).add((int)-damage);
 	}
 	
 	
@@ -85,25 +82,18 @@ public class CombatComponent extends GameObjectComponent
 	
 
 	@Override
-	public void drawComponent(Graphics g)
+	public void drawComponent(Graphics2D g)
 	{
-		if(visible && equippedWeapon != null)
+		if(isVisible() && equippedWeapon != null)
 		{
 			//maxAttackRange
 			g.setColor(Color.green);
-			g.drawOval((int)(parent.getShape().getPosition().getX() - equippedWeapon.getRange() + parent.getShape().getSize().getWidth()/2)
-					, (int)(parent.getShape().getPosition().getY() - equippedWeapon.getRange() + parent.getShape().getSize().getHeight()/2)
+			g.drawOval((int)(getParent().getShape().getPosition().getX() - equippedWeapon.getRange() + getParent().getShape().getSize().getWidth()/2)
+					, (int)(getParent().getShape().getPosition().getY() - equippedWeapon.getRange() + getParent().getShape().getSize().getHeight()/2)
 					, (int)(equippedWeapon.getRange())*2
 					, (int)(equippedWeapon.getRange())*2);
 		}
 		//TODO draw attack animation
-	}
-
-	
-	@Override
-	public void setVisible(boolean visible)
-	{
-		this.visible = visible;
 	}
 
 	
@@ -138,10 +128,5 @@ public class CombatComponent extends GameObjectComponent
 		attackDirection = direction;
 		if(b == false)
 			attackDirection = null;
-	}
-
-	public GameObject getParent()
-	{
-		return parent;
 	}
 }

@@ -4,7 +4,6 @@ import gameObject.components.GameObjectComponent;
 
 public abstract class AttributeComponent extends GameObjectComponent
 {
-	private GameObject parent;
 	private int maxValue;
 	private int value;
 	
@@ -14,7 +13,7 @@ public abstract class AttributeComponent extends GameObjectComponent
 	
 	public AttributeComponent(GameObject parent, int maxValue)
 	{
-		this.parent = parent;
+		super(parent);
 		this.maxValue = maxValue;
 		this.value = maxValue;
 	}
@@ -53,13 +52,7 @@ public abstract class AttributeComponent extends GameObjectComponent
 		this.value = value;
 	}
 	
-	
-	public GameObject getParent()
-	{
-		return parent;
-	}
-	
-	
+
 	public int getMaxValue()
 	{
 		return maxValue;

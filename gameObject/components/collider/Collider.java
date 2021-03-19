@@ -1,6 +1,7 @@
 package gameObject.components.collider;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
@@ -11,12 +12,10 @@ import gameObject.components.ICollisionHandler;
 public class Collider extends GameObjectComponent
 {
 	private Rectangle2D collider;
-	private GameObject parent;
-	private boolean visible = false;
 	
 	public Collider(GameObject parent)
 	{
-		this.parent = parent;
+		super(parent);
 		collider = new Rectangle2D.Double(parent.getShape().getPosition().getX(), 
 				parent.getShape().getPosition().getY(), 
 				parent.getShape().getSize().getWidth(), 
@@ -52,7 +51,7 @@ public class Collider extends GameObjectComponent
 				dy = 1;
 		}
 
-		parent.getShape().translate(dx * r.getWidth(), dy * r.getHeight());
+		getParent().getShape().translate(dx * r.getWidth(), dy * r.getHeight());
 		updateComponent();
 	}
 	
@@ -73,7 +72,7 @@ public class Collider extends GameObjectComponent
 				if(!collider.equals(((Collider)colliders.get(i)).getBounds()) && collider.intersects(((Collider)colliders.get(i)).getBounds()))
 				{
 					//Collision confirmed	
-					ArrayList<GameObjectComponent> handlers = parent.getComponentList(ICollisionHandler.class);
+					ArrayList<GameObjectComponent> handlers = getParent().getComponentList(ICollisionHandler.class);
 					solveRequest = false;
 					if(handlers != null)
 					{
@@ -93,28 +92,21 @@ public class Collider extends GameObjectComponent
 			}
 		}
 	}
-	
-	
-	@Override
-	public void setVisible(boolean visible)
-	{
-		this.visible = visible;
-	}
 
 	@Override
 	public void updateComponent()
 	{
-		collider.setRect(parent.getPosition().getX(),
-				parent.getPosition().getY(),
-				parent.getShape().getSize().getWidth(),
-				parent.getShape().getSize().getHeight());
+		collider.setRect(getParent().getPosition().getX(),
+				getParent().getPosition().getY(),
+				getParent().getShape().getSize().getWidth(),
+				getParent().getShape().getSize().getHeight());
 	}
 
 
 	@Override
-	public void drawComponent(Graphics g)
+	public void drawComponent(Graphics2D g)
 	{
-		if(visible)
+		if(isVisible())
 		{
 			g.setColor(Color.red);
 			g.drawRect((int)collider.getX(), (int)collider.getY(), (int)collider.getWidth(), (int)collider.getHeight());

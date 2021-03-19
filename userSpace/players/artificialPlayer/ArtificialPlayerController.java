@@ -1,6 +1,7 @@
 package userSpace.players.artificialPlayer;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import core.Direction;
 import gameObject.GameObject;
@@ -10,17 +11,16 @@ import userSpace.players.humanPlayer.Player;
 
 public class ArtificialPlayerController extends GameObjectComponent
 {
-	private GameObject parent, target;
+	private GameObject target;
 	
 	private double speed = 0.4;
 	private double minDistance;
 	private int maxDetectionDistance;
-	private boolean visible;
 	
 	
 	public ArtificialPlayerController(GameObject parent)
 	{
-		this.parent = parent;
+		super(parent);
 		maxDetectionDistance = 400;
 		minDistance = 20;
 	}
@@ -34,10 +34,10 @@ public class ArtificialPlayerController extends GameObjectComponent
 		double tmpDistance = Double.MAX_VALUE;
 		
 		
-		for(int i = 0; i < parent.getGame().getGameObjects().size(); i++)
+		for(int i = 0; i < getParent().getGame().getGameObjects().size(); i++)
 		{
-			tmp = parent.getGame().getGameObjects().get(i);
-			tmpDistance = tmp.getShape().getCenterDistance(parent.getShape());
+			tmp = getParent().getGame().getGameObjects().get(i);
+			tmpDistance = tmp.getShape().getCenterDistance(getParent().getShape());
 			
 			if(tmp.getClass().equals(Player.class))
 			{
@@ -63,7 +63,7 @@ public class ArtificialPlayerController extends GameObjectComponent
 	private Direction getTargetDirection(GameObject o)
 	{
 		if(o != null)
-			return Direction.getDirection(parent.getShape().getCenter(), o.getShape().getCenter());
+			return Direction.getDirection(getParent().getShape().getCenter(), o.getShape().getCenter());
 		return null;
 	}
 	
@@ -77,7 +77,7 @@ public class ArtificialPlayerController extends GameObjectComponent
 		target = findClosestTarget();
 		
 		try {
-			elapsedTime = 1_000_000_000 / parent.getGame().getFPS(); //in nanoseconds
+			elapsedTime = 1_000_000_000 / getParent().getGame().getFPS(); //in nanoseconds
 		} 
 		catch (Exception e) 
 		{
@@ -88,39 +88,32 @@ public class ArtificialPlayerController extends GameObjectComponent
 		if((targetDirection = getTargetDirection(target)) != null)
 		{	
 			double distanceFactor = (speed * elapsedTime)/1_000_000;
-			if(parent.getShape().getCircleEdgeDistance(target.getShape()) > minDistance)
-				parent.getShape().translate(distanceFactor * targetDirection.getX(), distanceFactor * targetDirection.getY());
+			if(getParent().getShape().getCircleEdgeDistance(target.getShape()) > minDistance)
+				getParent().getShape().translate(distanceFactor * targetDirection.getX(), distanceFactor * targetDirection.getY());
 			
-			((CombatComponent)parent.getFirstComponent(CombatComponent.class)).attack(targetDirection);
+			((CombatComponent)getParent().getFirstComponent(CombatComponent.class)).attack(targetDirection);
 		}
 	}
 
 	
 	@Override
-	public void drawComponent(Graphics g)
+	public void drawComponent(Graphics2D g)
 	{
-		if(visible)
+		if(isVisible())
 		{
 			//Viewing range
 			g.setColor(Color.cyan);
-			g.drawOval((int)(parent.getShape().getPosition().getX() - maxDetectionDistance + parent.getShape().getSize().getWidth()/2), 
-					(int)(parent.getShape().getPosition().getY() - maxDetectionDistance + parent.getShape().getSize().getHeight()/2), 
+			g.drawOval((int)(getParent().getShape().getPosition().getX() - maxDetectionDistance + getParent().getShape().getSize().getWidth()/2), 
+					(int)(getParent().getShape().getPosition().getY() - maxDetectionDistance + getParent().getShape().getSize().getHeight()/2), 
 					maxDetectionDistance*2, 
 					maxDetectionDistance*2);
 		
 			//Min distance
 			g.setColor(Color.pink);
-			g.drawOval((int)(parent.getShape().getPosition().getX() - (minDistance + parent.getShape().getRadius()) + parent.getShape().getSize().getWidth()/2), 
-					(int)(parent.getShape().getPosition().getY() - (minDistance + parent.getShape().getRadius()) + parent.getShape().getSize().getHeight()/2), 
-					(int)(minDistance + parent.getShape().getRadius())*2, 
-					(int)(minDistance + parent.getShape().getRadius())*2);
+			g.drawOval((int)(getParent().getShape().getPosition().getX() - (minDistance + getParent().getShape().getRadius()) + getParent().getShape().getSize().getWidth()/2), 
+					(int)(getParent().getShape().getPosition().getY() - (minDistance + getParent().getShape().getRadius()) + getParent().getShape().getSize().getHeight()/2), 
+					(int)(minDistance + getParent().getShape().getRadius())*2, 
+					(int)(minDistance + getParent().getShape().getRadius())*2);
 		}
-	}
-
-	
-	@Override
-	public void setVisible(boolean visible)
-	{
-		this.visible = visible;
 	}
 }
