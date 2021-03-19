@@ -35,23 +35,31 @@ public abstract class AttributeComponent extends GameObjectComponent
 		return true;
 	}
 	
+	
 	public String toString()
 	{
 		return "(" + getValue() + "/" + getMaxValue() + ")";
 	}
+	
+	
 	public int getValue()
 	{
 		return value;
 	}
 	
+	
 	public void setValue(int value)
 	{
 		this.value = value;
 	}
+	
+	
 	public GameObject getParent()
 	{
 		return parent;
 	}
+	
+	
 	public int getMaxValue()
 	{
 		return maxValue;
