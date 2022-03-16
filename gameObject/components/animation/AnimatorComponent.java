@@ -19,12 +19,14 @@ public class AnimatorComponent extends GameObjectComponent
 		animations = new ArrayList<Animation>();
 	}
 	
+	
 	@Override
 	public void updateComponent()
 	{
-		// TODO Auto-generated method stub
+
 	}
 
+	
 	@Override
 	public void drawComponent(Graphics g)
 	{
@@ -34,6 +36,7 @@ public class AnimatorComponent extends GameObjectComponent
 		}
 	}
 
+	
 	@Override
 	public void setVisible(boolean visible)
 	{

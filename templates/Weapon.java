@@ -13,13 +13,10 @@ public abstract class Weapon
 	private double attackSpeed;
 	private long attackTime;
 	private CombatComponent owner;
-	
-	@SuppressWarnings("unused")
-	private int frameCount;
+	protected boolean playanimation;
 	
 	public abstract ArrayList<CombatComponent> getEnemiesInAttackBox(Direction mouseDirection);
 	public abstract void playAnimation(Graphics g);
-	
 
 	
 	public Weapon(int damage, double attackSpeed, int range, int durability) //TODO implement range
@@ -28,6 +25,7 @@ public abstract class Weapon
 		this.durability = durability;
 		this.setRange(range);
 		this.attackSpeed = attackSpeed;
+		this.playanimation = false;
 		attackTime = System.nanoTime();
 	}
 	
@@ -66,6 +64,10 @@ public abstract class Weapon
 		}	
 	}
 	
+	private void setAnimationPlaying(boolean b)
+	{
+		//playAnimation = b;
+	}
 	
 	public boolean attack(Direction direction)
 	{
@@ -80,6 +82,7 @@ public abstract class Weapon
 			{
 				sendAttackMessage(enemies.get(i));
 			}
+			setAnimationPlaying(true);
 			return true;
 		}
 		return false;
@@ -90,10 +93,12 @@ public abstract class Weapon
 	{
 		return damage;
 	}
+	
 	public int getRange()
 	{
 		return range;
 	}
+	
 	public void setRange(int range)
 	{
 		this.range = range;

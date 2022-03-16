@@ -10,6 +10,8 @@ import templates.Weapon;
 public class Sword extends Weapon
 {
 	private double attackAngle = 100;
+	
+	
 	public Sword(int damage, double attackSpeed, int range, int durability)
 	{
 		super(damage, attackSpeed, range, durability);
@@ -41,9 +43,5 @@ public class Sword extends Weapon
 	}
 
 	@Override
-	public void playAnimation(Graphics g)
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	public void playAnimation(Graphics g) {}
 }

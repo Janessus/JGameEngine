@@ -26,12 +26,12 @@ public abstract class Animation
 	{
 		this.duration = milliDuration;
 		this.animationFrames = animationFrames;
+		frames = animationFrames.size();
 		elapsedTime = 0;
 		frameCounter = 0;
 		maxFrameTime = (long) ((frames * 1_000_000) / duration); //in ns
-		frames = animationFrames.size();
+		
 	}
-	
 	
 	
 	private void update()

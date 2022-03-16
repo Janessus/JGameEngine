@@ -12,6 +12,7 @@ public class SwordAttackAnimation extends Animation
 	public SwordAttackAnimation(int milliDuration)
 	{
 		super(milliDuration, new ArrayList<IAnimationFrame>());
+		setupFrames();
 	}
 	
 	
